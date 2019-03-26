@@ -1,0 +1,31 @@
+.loading {
+  width: 70px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.loading > view {
+  width: 24rpx;
+  height: 24rpx;
+  background-color: rgba(21, 101, 192, 0.6);
+
+  border-radius: 100%;
+  display: inline-block;
+  animation: sk-bouncedelay 1s infinite ease-in-out both;
+}
+
+.loading .bounce1 {
+  animation-delay: -0.32s;
+}
+
+.loading .bounce2 {
+  animation-delay: -0.16s;
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% { 
+    transform: scale(0);
+  } 40% { 
+    transform: scale(1.0);
+  }
+}

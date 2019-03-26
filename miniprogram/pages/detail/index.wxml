@@ -1,0 +1,40 @@
+<view class="header-title">{{goalTitle}}</view>
+<view class="subtitle">统计概览</view>
+<view class="statistics-container">
+  <view class="time statistics-item">
+    <image src="../../images/detail/time.png" />
+    <view class="title">累计时间</view>
+    <view class="desc">{{time}}</view>
+  </view>
+  <view class="longest-record statistics-item">
+    <image src="../../images/detail/longest-record.png" />
+    <view class="title">最长时间</view>
+    <view class="desc">{{longestTime}}</view>
+  </view>
+  <view class="recent-date statistics-item">
+    <image src="../../images/detail/recent.png" />
+    <view class="title">最近记录</view>
+    <view class="desc">{{lastUpdate ? lastUpdate : '无记录'}}</view>
+  </view>
+</view>
+<!-- 记录列表 -->
+<view class="subtitle">目标记录</view>
+<view class="record-container">
+  <view class="record" wx:for="{{goalRecords}}" wx:key="beginDate">
+    <view class="record-content">
+      <view class="record-title">{{item.summary}}</view>
+      <view class="tags">
+        <m-tag text="{{item.date}}" />
+      </view>
+    </view>
+    <view class="record-duration">
+      <view class="num">{{item.duration.before}}</view>
+      <view class="unit">{{item.duration.after}}</view>
+    </view>
+  </view>
+</view>
+<!-- 行为按钮 -->
+<view class="start-record" bind:tap="onStartRecord">
+  <image src="../../images/detail/timer.png" />
+  <view class="desc">开始记录</view>
+</view>

@@ -1,0 +1,136 @@
+.header > .title {
+  margin: 0 40rpx;
+  margin-top: 40rpx;
+  height: 48rpx;
+  font-weight: bold;
+  font-size: 48rpx;
+}
+
+.header > .state {
+  margin: 16rpx 40rpx;
+  margin-top: 24rpx;
+  color: #1976D2;
+  font-weight: bold;
+  font-size: 32rpx;
+}
+
+.timer {
+  margin: 0 auto;
+  margin-top: 64rpx;
+  color: #1976D2;
+  text-align: center;
+  text-shadow: 0 8rpx 12rpx rgba(0, 0, 0, 0.1);
+  letter-spacing: 4rpx;
+  font-weight: bold;
+  font-size: 72rpx;
+}
+
+.circle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 80rpx;
+  width: 360rpx;
+  height: 360rpx;
+}
+
+.circle::before {
+  position: absolute;
+  display: block;
+  box-sizing: border-box;
+  width: 360%;
+  height: 360%;
+  border-radius: 50%;
+  background-color: #01A4E9;
+  content: '';
+  animation: pulse-ring 3s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+.circle::after {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 8rpx solid #1976D2;
+  border-radius: 50%;
+  background-color: white;
+  content: '';
+  animation: pulse-dot 3s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;
+}
+
+.circle > .pause-resume {
+  z-index: 1;
+  box-sizing: border-box;
+  padding: 24rpx;
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 50%;
+  background-color: #2196F3;
+  box-shadow: 0 6rpx 12rpx rgba(0, 0, 0, 0.1);
+  transition: 0.4s all;
+}
+
+.circle > .pause-resume.resume {
+  background-color: #FFA726;
+}
+
+@keyframes pulse-ring {
+  0% {
+    opacity: 0.2;
+    transform: scale(0.1);
+  }
+  80%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-dot {
+  0% {
+    transform: scale(0.96);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.96);
+  }
+}
+
+.button-group {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 120rpx;
+  opacity: 0.99;
+}
+
+.button-group > .button {
+  box-sizing: border-box;
+  padding: 16rpx 28rpx;
+  border-radius: 40rpx;
+  font-weight: bold;
+}
+
+.button > image {
+  margin-right: 12rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.button.finish {
+  display: flex;
+  align-items: center;
+  background-color: #1976D2;
+  color: #EEE;
+  font-size: 32rpx;
+}
+
+.button.abort {
+  margin-top: 24rpx;
+  color: #999;
+  font-size: 30rpx;
+}

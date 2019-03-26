@@ -1,0 +1,8 @@
+.tag {
+  font-size: 22rpx;
+  background-color: rgba(25, 118, 210, 0.04);
+  padding: 8rpx 12rpx;
+  color: #aaa;
+  border-radius: 12rpx;
+  display: inline-block;
+}

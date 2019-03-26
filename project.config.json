@@ -1,0 +1,57 @@
+{
+	"miniprogramRoot": "miniprogram/",
+	"cloudfunctionRoot": "cloudfunctions/",
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"appid": "wxf3b7c8354b7ef2af",
+	"projectname": "Chronus",
+	"libVersion": "2.2.5",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": 2,
+			"list": [
+				{
+					"id": 0,
+					"name": "detail",
+					"pathName": "pages/detail/index",
+					"query": "id=XIzKrcDR1TiN7x3C",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "timer",
+					"pathName": "pages/timer/index",
+					"query": "title=HelloWorld",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "summary",
+					"pathName": "pages/summary/index",
+					"query": "",
+					"scene": null
+				}
+			]
+		}
+	}
+}

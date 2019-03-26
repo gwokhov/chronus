@@ -1,0 +1,123 @@
+.header-title {
+  font-size: 44rpx;
+  font-weight: bold;
+  margin: 24rpx 40rpx;
+  height: 48rpx;
+}
+
+.subtitle {
+  font-size: 32rpx;
+  color: #1976d2;
+  font-weight: bold;
+  margin: 16rpx 40rpx;
+  margin-top: 40rpx;
+}
+
+.start-record {
+  box-sizing: border-box;
+  position: fixed;
+  background-color: #1565c0;
+  bottom: 8%;
+  right: 36rpx;
+  padding: 16rpx 30rpx;
+  border-radius: 48rpx;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 3rpx 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.start-record image {
+  width: 42rpx;
+  height: 42rpx;
+}
+
+.start-record .desc {
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-left: 10rpx;
+  padding-bottom: 4rpx;
+}
+
+.statistics-container {
+  margin: 0 40rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.statistics-item {
+  margin-bottom: 24rpx;
+  background-color: #fff;
+  border-radius: 18rpx;
+  padding: 24rpx;
+  width: 30%;
+  box-sizing: border-box;
+}
+
+.statistics-item.time {
+  background-color: rgba(0, 150, 136, 0.08);
+}
+
+.statistics-item.longest-record {
+  background-color: rgba(121, 85, 72, 0.08);
+}
+
+.statistics-item.recent-date {
+  background-color: rgba(25, 118, 210, 0.08);
+}
+
+.statistics-item image {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.statistics-item .title {
+  font-weight: bold;
+  font-size: 30rpx;
+}
+
+.statistics-item .desc {
+  font-size: 24rpx;
+  color: #888;
+}
+
+.record-container {
+  margin: 0 40rpx;
+  margin-bottom: 160rpx;
+}
+
+.record {
+  border-top: 1rpx solid rgba(25, 118, 210, 0.08);
+  padding: 20rpx 0;
+  display: flex;
+  align-items: center;
+}
+
+.record-duration {
+  flex-shrink: 0;
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.record-duration .num {
+  font-weight: bold;
+  font-size: 32rpx;
+  line-height: 32rpx;
+  color: #1565c0;
+}
+
+.record-duration .unit {
+  font-size: 24rpx;
+  color: #777;
+}
+
+.record-content .record-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8rpx;
+  margin-right: 16rpx;
+}

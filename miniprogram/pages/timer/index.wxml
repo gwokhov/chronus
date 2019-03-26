@@ -1,0 +1,15 @@
+<view class="header">
+  <view class="title">{{goalTitle}}</view>
+  <view class="state">{{isOngoing ? '进行中' : '暂停中'}}</view>
+</view>
+<view class="timer">{{timer}}</view>
+<view class="circle">
+  <image class="pause-resume {{!isOngoing ? 'resume' : ''}}" src="{{isOngoing? pauseImg:resumeImg}}" bind:tap="onPauseOrResume" />
+</view>
+<view class="button-group">
+  <view class="finish button" bind:tap="onFinish">
+    <image src="../../images/timer/done.png" />
+    结束并保存
+  </view>
+  <view class="abort button" bind:tap="onAbort">取消</view>
+</view>

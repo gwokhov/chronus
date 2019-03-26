@@ -1,0 +1,64 @@
+<!-- 用户信息 -->
+<view class='user-info-container'>
+  <image class='avatar' src='{{userInfo.avatarUrl}}' mode='aspectFit'></image>
+  <view class='info'>
+    <view class='name' wx:if="{{userInfo}}">{{userInfo.nickName}}，</view>
+    <button class="authorize" open-type="getUserInfo" bindgetuserinfo="onAuthorize" wx:else>
+      授权登录
+    </button>
+    <view class="statistics">你的总累计时间为 {{wholeTime}}</view>
+  </view>
+</view>
+<!-- 饼状图 -->
+<view class="pie-container">
+  <image class="empty-img" wx:if="{{goalList.length === 0}}" mode="aspectFit" src="../../images/home/empty.png" bind:tap="onCreateGoal" />
+  <view class="pie" hidden="{{creatingGoal || goalList.length === 0}}">
+    <ec-canvas id="chart" ec="{{ chart }}"></ec-canvas>
+  </view>
+</view>
+<!-- 当前记录提示 -->
+<view class="timer-tips" wx:if="{{timerState}}" bind:tap="onCheckTimer">
+  <view class="timer-detail">
+    当前
+    <view class="timer-goal-title">{{timerGoalTitle}}</view>
+    {{timerState}}
+    <view class="check-timer">查看</view>
+  </view>
+  <view class="timer">{{timer}}</view>
+</view>
+<!-- 目标信息 -->
+<view class="project-container">
+  <view class="count">
+    你有
+    <view class="num">{{goalList.length}}</view>
+    个目标：
+  </view>
+  <view wx:if="{{goalList.length}}">
+    <view class="project" wx:for="{{goalList}}" wx:key="_id" bind:tap="onGoalClick" data-goal-id="{{item._id}}" data-goal-title="{{item.title}}">
+      <view class="title">{{item.title}}</view>
+      <view class="tags">
+        <m-tag text="{{'累计: ' + item.duration}}" />
+        <m-tag text="最后记录：{{item.lastUpdate}}" wx:if="{{item.lastUpdate}}" />
+      </view>
+    </view>
+  </view>
+  <view class="loading" wx:elif="{{!goalList}}">
+    <m-loading />
+  </view>
+</view>
+<view class="tips">
+  
+</view>
+<!-- 创建按钮 -->
+<image class="create" src="../../images/home/create.png" bind:tap="onCreateGoal" />
+<!-- 遮罩层 -->
+<view class="mask" wx:if="{{creatingGoal}}"></view>
+<!-- 目标创建对话框 -->
+<view class="create-modal" wx:if="{{creatingGoal}}">
+  <view class="modal-title">新目标的名称是？</view>
+  <input maxlength="20" class="new-goal-title" placeholder="例如：阅读《瓦尔登湖》" bindinput="onNewGoalInput" />
+  <view class="button-group">
+    <view class="cancel" bind:tap="onCancelCreate">取消</view>
+    <view class="confirm" bind:tap="onAddGoal">确定</view>
+  </view>
+</view>

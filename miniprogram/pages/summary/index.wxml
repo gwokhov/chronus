@@ -1,0 +1,23 @@
+<view class="header">
+  <view class="title">{{goalTitle}}</view>
+  <view class="subtitle">本次记录统计</view>
+</view>
+<view class="info-container">
+  <view class="date-container begin">
+    <view class="time">{{beginTime}}</view>
+    <view class="date">{{beginDate}}</view>
+    <view class="date-desc">开始时间</view>
+  </view>
+  <view class="duration-container">
+    <view class="duration">{{durationText}}</view>
+    <view class="line"></view>
+  </view>
+  <view class="date-container end">
+    <view class="time">{{endTime}}</view>
+    <view class="date">{{endDate}}</view>
+    <view class="date-desc">结束时间</view>
+  </view>
+</view>
+<view class="subtitle">有什么要总结的吗？</view>
+<textarea name="textarea" bindinput="onSummaryInput" maxlength="140" />
+<view class="button" bind:tap="onSubmit">保存</view>
