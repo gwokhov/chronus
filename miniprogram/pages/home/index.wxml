@@ -27,13 +27,13 @@
   <view class="timer">{{timer}}</view>
 </view>
 <!-- 目标信息 -->
-<view class="project-container">
+<view class="project-container" wx:if="{{goalList.length}}">
   <view class="count">
     你有
     <view class="num">{{goalList.length}}</view>
     个目标：
   </view>
-  <view wx:if="{{goalList.length}}">
+  <view>
     <view class="project" wx:for="{{goalList}}" wx:key="_id" bind:tap="onGoalClick" data-goal-id="{{item._id}}" data-goal-title="{{item.title}}">
       <view class="title">{{item.title}}</view>
       <view class="tags">
@@ -42,13 +42,11 @@
       </view>
     </view>
   </view>
-  <view class="loading" wx:elif="{{!goalList}}">
-    <m-loading />
-  </view>
 </view>
-<view class="tips">
-  
+<view class="loading" wx:elif="{{!goalList}}">
+  <m-loading />
 </view>
+<m-tips warn="Hi，你还没有创建目标呢" tips="点击右下角的 “+” 开始吧！" wx:else></m-tips>
 <!-- 创建按钮 -->
 <image class="create" src="../../images/home/create.png" bind:tap="onCreateGoal" />
 <!-- 遮罩层 -->

@@ -1,4 +1,4 @@
-import { dateFormat, durationFormatText } from '../utils/dateTimeUtil'
+import { dateFormat, durationFormatText, dateTimeFormat } from '../utils/dateTimeUtil'
 const db = wx.cloud.database()
 
 class HomeModel {
@@ -54,7 +54,7 @@ class HomeModel {
   static formatGoalList(list) {
     let wholeTime = 0
     list.forEach(goal => {
-      goal.lastUpdate = dateFormat(goal.lastUpdate)
+      goal.lastUpdate = dateTimeFormat(goal.lastUpdate)
       wholeTime += goal.time
       goal.duration = durationFormatText(goal.time)
       goal.time = (goal.time / ( 60 * 60)).toFixed(2)

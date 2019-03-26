@@ -1,0 +1,43 @@
+.tips-container {
+  margin: 0 40rpx;
+  background-color: #fdd835;
+  font-size: 28rpx;
+  border-radius: 18rpx;
+  padding: 20rpx 24rpx;
+  color: #555;
+  box-shadow: 0 6rpx 24rpx rgba(25, 118, 210, 0.08);
+  display: flex;
+  align-items: center;
+  animation: ani 2s infinite ease-in-out;
+}
+
+.tips-container > .info > .warn {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.tips-container > .info > .tips {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #000;
+  margin-top: 2rpx;
+}
+
+.tips-container > image {
+  width: 56rpx;
+  height: 56rpx;
+  margin-right: 32rpx;
+  align-self: flex-start;
+}
+
+@keyframes ani {
+  0% {
+    background-color: #fdd835;
+  }
+  70% {
+    background-color: #fbc02d;
+  }
+  100% {
+    background-color: #fdd835;
+  }
+}

@@ -1,0 +1,7 @@
+<view class="tips-container">
+  <image src="./images/nav.png" />
+  <view class="info">
+    <view class="warn">{{warn}}</view>
+    <view class="tips">{{tips}}</view>
+  </view>
+</view>

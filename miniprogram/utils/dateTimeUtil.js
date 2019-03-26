@@ -16,6 +16,7 @@ var timeFormat = function(dateStr) {
 }
 
 var dateTimeFormat = function(dateStr) {
+  if (!dateStr) return null 
   return dateFormat(dateStr) + ' ' + timeFormat(dateStr)
 }
 
