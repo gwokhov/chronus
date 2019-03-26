@@ -31,7 +31,7 @@ class DetailModel {
   }
 
   static getLongestTime(goalRecords) {
-    if(!goalRecords) return 0
+    if(!goalRecords) return durationFormatText(0)
     let max = 0
     goalRecords.forEach(record=>{
       if(record.time > 0) {

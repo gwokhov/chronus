@@ -57,7 +57,7 @@ class HomeModel {
       goal.lastUpdate = dateFormat(goal.lastUpdate)
       wholeTime += goal.time
       goal.duration = durationFormatText(goal.time)
-      goal.time = (goal.time / (1000 * 60 * 60)).toFixed(2)
+      goal.time = (goal.time / ( 60 * 60)).toFixed(2)
     })
     return { list, wholeTime: durationFormatText(wholeTime) }
   }

@@ -90,7 +90,7 @@ Page({
       isOngoing: true
     })
 
-    globalEnv.startTimer(this.data.goalId, this.data.title, duration => {
+    globalEnv.startTimer(this.data.goalId, this.data.goalTitle, duration => {
       this.setData({
         timer: timerFormat(duration)
       })
