@@ -1,5 +1,5 @@
 import { DetailModel } from '../../models/detail'
-import { showToast } from '../../utils/UIUtil'
+import { showToast, showModal } from '../../utils/UIUtil'
 
 const globalEnv = getApp()
 
@@ -38,6 +38,21 @@ Page({
           this.data.goalTitle
       })
     }
+  },
+
+  onRemoveGoal() {
+    showModal('', '是否删除“' + this.data.goalTitle + '”', () => {
+      DetailModel.removeGoal(this.data.goalId).then(
+        res => {
+          wx.navigateBack({
+            delta: 1
+          })
+        },
+        err => {
+          showToast('删除失败')
+        }
+      )
+    })
   },
 
   getGoalData(id) {

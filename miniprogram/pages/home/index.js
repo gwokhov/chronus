@@ -26,10 +26,10 @@ Page({
 
   onLoad(options) {
     this.getUserInfo()
-    this.getOpenidAndUserId()
   },
 
   onShow() {
+    this.getOpenidAndUserId()
     this.setTimerTips()
   },
 

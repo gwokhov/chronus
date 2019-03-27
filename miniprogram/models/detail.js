@@ -1,9 +1,21 @@
-import { dateFormat, dateTimeFormat, durationFormat, durationFormatText } from '../utils/dateTimeUtil'
+import {
+  dateFormat,
+  dateTimeFormat,
+  durationFormat,
+  durationFormatText
+} from '../utils/dateTimeUtil'
 
 class DetailModel {
   static getGoalData(goalId) {
     return wx.cloud.callFunction({
       name: 'getGoalData',
+      data: { goalId }
+    })
+  }
+
+  static removeGoal(goalId) {
+    return wx.cloud.callFunction({
+      name: 'removeGoal',
       data: { goalId }
     })
   }
@@ -22,19 +34,22 @@ class DetailModel {
   }
 
   static formatGoalRecords(goalRecords) {
-    if(!goalRecords) return []
-    goalRecords.forEach(record=>{
-      record.duration = durationFormat(record.time),
-      record.date = dateTimeFormat(record.beginDate) + ' ~ ' + dateTimeFormat(record.endDate)
+    if (!goalRecords) return []
+    goalRecords.forEach(record => {
+      ;(record.duration = durationFormat(record.time)),
+        (record.date =
+          dateTimeFormat(record.beginDate) +
+          ' ~ ' +
+          dateTimeFormat(record.endDate))
     })
     return goalRecords
   }
 
   static getLongestTime(goalRecords) {
-    if(!goalRecords) return durationFormatText(0)
+    if (!goalRecords) return durationFormatText(0)
     let max = 0
-    goalRecords.forEach(record=>{
-      if(record.time > 0) {
+    goalRecords.forEach(record => {
+      if (record.time > 0) {
         max = record.time
       }
     })

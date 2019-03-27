@@ -34,6 +34,7 @@ App({
       clearInterval(this.data.timerId)
     }
 
+    onCount(this.data.duration++)
     let timerId = setInterval(() => {
       onCount(this.data.duration++)
     }, 1000)

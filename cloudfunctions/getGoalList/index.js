@@ -10,15 +10,10 @@ exports.main = async (event, context) => {
   console.log(userId)
 
   try {
-    let userInfo = await db
-      .collection('users')
-      .doc(userId)
-      .get()
-
     return await db
       .collection('goals')
       .where({
-        _id: _.in(userInfo.data.goals)
+        userId
       })
       .get()
   } catch (e) {

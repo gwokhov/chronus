@@ -1,4 +1,7 @@
-<view class="header-title">{{goalTitle}}</view>
+<view class="header">
+  <view class="goal-title">{{goalTitle}}</view>
+  <image mode="aspectFit" bind:tap="onRemoveGoal" class="remove-goal" src="../../images/detail/remove.png"></image>
+</view>
 <view class="subtitle">统计概览</view>
 <view class="statistics-container">
   <view class="time statistics-item">

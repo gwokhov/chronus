@@ -11,6 +11,7 @@ exports.main = async (event, context) => {
   try {
     let goal = await db.collection('goals').add({
       data: {
+        userId: userId,
         title: goalTitle,
         createDate: new Date(),
         lastUpdate: null,
@@ -18,14 +19,14 @@ exports.main = async (event, context) => {
       }
     })
 
-    await db
-      .collection('users')
-      .doc(userId)
-      .update({
-        data: {
-          goals: _.push([goal._id])
-        }
-      })
+    // await db
+    //   .collection('users')
+    //   .doc(userId)
+    //   .update({
+    //     data: {
+    //       goals: _.push([goal._id])
+    //     }
+    //   })
 
     await db
       .collection('goal-records')

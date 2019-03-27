@@ -1,8 +1,22 @@
-.header-title {
+.header {
+  display: flex;
+  margin: 24rpx 40rpx;
+  align-items: center;
+}
+
+.header > .goal-title {
   font-size: 44rpx;
   font-weight: bold;
-  margin: 24rpx 40rpx;
   height: 48rpx;
+  line-height: 48rpx;
+  vertical-align: text-top;
+}
+
+.header > .remove-goal {
+  width: 44rpx;
+  height: 44rpx;
+  margin-left: auto;
+  flex-shrink: 0;
 }
 
 .subtitle {
