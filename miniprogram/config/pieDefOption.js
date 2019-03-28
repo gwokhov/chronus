@@ -8,12 +8,12 @@ export default {
 
   visualMap: {
     show: false,
-    min: 10,
-    max: 100000,
+    min: 0,
+    max: 8,
     inRange: {
-      colorLightness: [0.7, 0.2]
+        colorLightness: [0.8, 0.46]
     }
-  },
+},
   series: [
     {
       name: '累计',
@@ -42,7 +42,7 @@ export default {
       },
       itemStyle: {
         normal: {
-          color: 'rgb(25, 118, 210)'
+          color: '#039be5'
         }
       },
 
