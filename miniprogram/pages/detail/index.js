@@ -10,7 +10,7 @@ Page({
     lastUpdate: '',
     time: '',
     longestTime: '',
-    goalRecords: []
+    goalRecords: null
   },
 
   onLoad: function(options) {

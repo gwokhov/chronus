@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "m-tag": "../../components/tag/index",
-    "m-tips": "../../components/tips/index"
+    "m-tips": "../../components/tips/index",
+    "m-loading": "../../components/loading/index"
   }
 }

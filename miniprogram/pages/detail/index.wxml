@@ -36,6 +36,9 @@
     </view>
   </view>
 </view>
+<view class="loading" wx:elif="{{!goalRecords}}">
+  <m-loading />
+</view>
 <m-tips warn="目标似乎还没有开始过" tips="点击“开始记录”来启动吧！" wx:else></m-tips>
 <!-- 行为按钮 -->
 <view class="start-record" bind:tap="onStartRecord">

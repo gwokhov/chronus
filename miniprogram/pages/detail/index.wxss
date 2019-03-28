@@ -40,12 +40,12 @@
   align-items: center;
 }
 
-.start-record image {
+.start-record > image {
   width: 42rpx;
   height: 42rpx;
 }
 
-.start-record .desc {
+.start-record > .desc {
   color: #fff;
   font-size: 32rpx;
   font-weight: bold;
@@ -81,17 +81,17 @@
   background-color: rgba(25, 118, 210, 0.08);
 }
 
-.statistics-item image {
+.statistics-item > image {
   width: 48rpx;
   height: 48rpx;
 }
 
-.statistics-item .title {
+.statistics-item > .title {
   font-weight: bold;
   font-size: 30rpx;
 }
 
-.statistics-item .desc {
+.statistics-item > .desc {
   font-size: 24rpx;
   color: #888;
 }
@@ -116,22 +116,27 @@
   align-items: flex-end;
 }
 
-.record-duration .num {
+.record-duration > .num {
   font-weight: bold;
   font-size: 32rpx;
   line-height: 32rpx;
   color: #1565c0;
 }
 
-.record-duration .unit {
+.record-duration > .unit {
   font-size: 24rpx;
   color: #777;
 }
 
-.record-content .record-title {
+.record-content > .record-title {
   font-size: 30rpx;
   font-weight: bold;
   color: #333;
   margin-bottom: 8rpx;
   margin-right: 16rpx;
+}
+
+/* 加载 */
+.loading {
+  margin-top: 100rpx;
 }
