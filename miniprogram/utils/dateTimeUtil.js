@@ -16,7 +16,7 @@ var timeFormat = function(dateStr) {
 }
 
 var dateTimeFormat = function(dateStr) {
-  if (!dateStr) return null 
+  if (!dateStr) return null
   return dateFormat(dateStr) + ' ' + timeFormat(dateStr)
 }
 
@@ -46,6 +46,13 @@ var durationFormat = function(duration) {
   }
 }
 
+var countDuration = function(startDate, endDate) {
+  if (!startDate && !endDate) return
+  if (endDate.getTime() - startDate.getTime() <= 0) return
+
+  return Math.floor((endDate.getTime() - startDate.getTime()) / 1000)
+}
+
 var durationFormatText = function(duration) {
   let obj = durationFormat(duration)
   return obj.before + obj.after
@@ -68,5 +75,6 @@ export {
   dateTimeFormat,
   durationFormat,
   durationFormatText,
-  timerFormat
+  timerFormat,
+  countDuration
 }

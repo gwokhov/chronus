@@ -69,6 +69,11 @@ Page({
   },
 
   onAddGoal() {
+    if (!this.data.newGoalTitle.length) {
+      showToast('标题不能为空')
+      return
+    }
+
     if (!this.data.uploadingGoal) {
       this.data.uploadingGoal = true
       HomeModel.addGoal(globalEnv.data.userId, this.data.newGoalTitle).then(

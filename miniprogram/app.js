@@ -1,4 +1,5 @@
 import { TimerState } from './config/timerState'
+import { countDuration } from './utils/dateTimeUtil'
 
 App({
   onLaunch() {
@@ -16,13 +17,33 @@ App({
       duration: 0,
       goalId: '',
       goalTitle: '',
-      beginDate: null
+      beginDate: null,
+      hideDate: null,
+      hideDuration: 0,
+      lastShowDuration: 0
     }
   },
 
-  startTimer(goalId, goalTitle, onCount) {
+  onShow() {
+    let hideDate = this.data.hideDate
+    if (!hideDate) return
 
-    if(this.data.timerState === TimerState.None) {
+    console.log(this.data.lastShowDuration, countDuration(hideDate, new Date()))
+    this.data.duration =
+      this.data.lastShowDuration + countDuration(hideDate, new Date())
+      
+    this.data.hideDate = null
+  },
+
+  onHide() {
+    if (this.data.timerState !== TimerState.Ongoing) return
+    
+    this.data.hideDate = new Date()
+    this.data.lastShowDuration = this.data.duration
+  },
+
+  startTimer(goalId, goalTitle, onCount) {
+    if (this.data.timerState === TimerState.None) {
       this.data.goalId = goalId
       this.data.goalTitle = goalTitle
       this.data.beginDate = new Date()
@@ -54,7 +75,10 @@ App({
     this.data.goalId = ''
     this.data.goalTitle = ''
     this.data.duration = 0
+    this.data.lastShowDuration = 0
+    this.data.hideDuration = 0
     this.data.beginDate = null
+    this.data.hideDate = null
   },
 
   checkExistTimer() {
