@@ -14,6 +14,7 @@ Page({
     },
     userInfo: null,
     creatingGoal: false,
+    uploadingGoal: false,
     newGoalTitle: '',
     goalList: null,
     wholeTime: '',
@@ -68,18 +69,22 @@ Page({
   },
 
   onAddGoal() {
-    HomeModel.addGoal(globalEnv.data.userId, this.data.newGoalTitle).then(
-      res => {
-        this.setData({
-          creatingGoal: false
-        })
-        showToast('创建成功', true)
-        this.getGoalList()
-      },
-      err => {
-        showToast('创建失败')
-      }
-    )
+    if (!this.data.uploadingGoal) {
+      this.data.uploadingGoal = true
+      HomeModel.addGoal(globalEnv.data.userId, this.data.newGoalTitle).then(
+        res => {
+          this.setData({
+            creatingGoal: false,
+            uploadingGoal: false
+          })
+          showToast('创建成功', true)
+          this.getGoalList()
+        },
+        err => {
+          showToast('创建失败')
+        }
+      )
+    }
   },
 
   onGoalClick(e) {
