@@ -27,9 +27,6 @@
 
 .circle {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin: 0 auto;
   margin-top: 80rpx;
   width: 360rpx;
@@ -38,10 +35,11 @@
 
 .circle::before {
   position: absolute;
-  display: block;
   box-sizing: border-box;
-  width: 360%;
-  height: 360%;
+  width: 1200rpx;
+  height: 1200rpx;
+  top: calc(50% - 600rpx);
+  left: calc(50% - 600rpx);
   border-radius: 50%;
   background-color: #01A4E9;
   content: '';
@@ -50,10 +48,12 @@
 
 .circle::after {
   position: absolute;
-  display: block;
-  width: 100%;
-  height: 100%;
+  width: 360rpx;
+  height: 360rpx;
+  top: calc(50% - 180rpx);
+  left: calc(50% - 180rpx);
   border: 8rpx solid #1976D2;
+  box-sizing: border-box;
   border-radius: 50%;
   background-color: white;
   content: '';
@@ -61,11 +61,14 @@
 }
 
 .circle > .pause-resume {
+  position: absolute;
   z-index: 1;
   box-sizing: border-box;
   padding: 24rpx;
   width: 110rpx;
   height: 110rpx;
+  top: calc(50% - 55rpx);
+  left: calc(50% - 55rpx);
   border-radius: 50%;
   background-color: #2196F3;
   box-shadow: 0 6rpx 12rpx rgba(0, 0, 0, 0.1);

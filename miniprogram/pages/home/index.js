@@ -47,7 +47,7 @@ Page({
 
   onCreateGoal() {
     if (!this.data.userInfo) {
-      showToast('请授权登录')
+      showToast('请先授权登录')
       return
     }
     this.setData({
