@@ -74,22 +74,26 @@ Page({
       return
     }
 
-    if (!this.data.uploadingGoal) {
-      this.data.uploadingGoal = true
-      HomeModel.addGoal(globalEnv.data.userId, this.data.newGoalTitle).then(
-        res => {
-          this.setData({
-            creatingGoal: false,
-            uploadingGoal: false
-          })
-          showToast('创建成功', true)
-          this.getGoalList()
-        },
-        err => {
-          showToast('创建失败')
-        }
-      )
-    }
+    if (this.data.uploadingGoal) return
+
+    this.data.uploadingGoal = true
+    HomeModel.addGoal(globalEnv.data.userId, this.data.newGoalTitle).then(
+      res => {
+        this.setData({
+          creatingGoal: false
+        })
+        this.data.uploadingGoal = false
+        showToast('创建成功', true)
+        this.getGoalList()
+      },
+      err => {
+        this.setData({
+          creatingGoal: false,
+          uploadingGoal: false
+        })
+        showToast('创建失败')
+      }
+    )
   },
 
   onGoalClick(e) {

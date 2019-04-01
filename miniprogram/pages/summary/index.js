@@ -18,7 +18,8 @@ Page({
     endDate: '',
     duration: 0,
     durationText: '',
-    summary: ''
+    summary: '',
+    uploadingSummary: false
   },
 
   onLoad(options) {
@@ -44,6 +45,9 @@ Page({
   },
 
   onSubmit() {
+    if (this.data.uploadingSummary) return
+
+    this.data.uploadingSummary = true
     SummaryModel.addGoalRecord(
       this.data.goalId,
       this.data.begin,
@@ -58,6 +62,7 @@ Page({
         })
       },
       err => {
+        this.data.uploadingSummary = false
         showToast('提交失败')
       }
     )
