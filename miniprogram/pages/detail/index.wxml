@@ -1,5 +1,6 @@
 <view class="header">
   <view class="goal-title">{{goalTitle}}</view>
+  <image mode="aspectFit" bind:tap="onEditGoalTitle" class="edit-goal-title" src="../../images/detail/edit.png"></image>
   <image mode="aspectFit" bind:tap="onRemoveGoal" class="remove-goal" src="../../images/detail/remove.png"></image>
 </view>
 <view class="subtitle">统计概览</view>
@@ -27,7 +28,7 @@
     <view class="record-content">
       <view class="record-title">{{item.summary}}</view>
       <view class="tags">
-        <m-tag text="{{item.date}}" />
+        <m-tag>{{item.date}}</m-tag>
       </view>
     </view>
     <view class="record-duration">
@@ -45,3 +46,5 @@
   <image src="../../images/detail/timer.png" />
   <view class="desc">开始记录</view>
 </view>
+
+<m-modal title="目标名称修改为？" inputPlaceholder="{{goalTitle}}" wx:if="{{editingGoal}}" bind:confirm="onEditCompleted" bind:cancel="onEditCancel"/>

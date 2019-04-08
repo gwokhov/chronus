@@ -37,8 +37,8 @@
     <view class="project" wx:for="{{goalList}}" wx:key="_id" bind:tap="onGoalClick" data-goal-id="{{item._id}}" data-goal-title="{{item.title}}">
       <view class="title">{{item.title}}</view>
       <view class="tags">
-        <m-tag text="{{'累计: ' + item.duration}}" />
-        <m-tag text="最后记录：{{item.lastUpdate}}" wx:if="{{item.lastUpdate}}" />
+        <m-tag>累计: {{item.duration}}</m-tag>
+        <m-tag wx:if="{{item.lastUpdate}}">最后记录：{{item.lastUpdate}}</m-tag>
       </view>
     </view>
   </view>
@@ -49,14 +49,5 @@
 <m-tips warn="Hi，你还没有创建目标呢" tips="点击右下角的 “+” 开始吧！" wx:else></m-tips>
 <!-- 创建按钮 -->
 <image class="create" src="../../images/home/create.png" bind:tap="onCreateGoal" />
-<!-- 遮罩层 -->
-<view class="mask" wx:if="{{creatingGoal}}"></view>
-<!-- 目标创建对话框 -->
-<view class="create-modal" wx:if="{{creatingGoal}}">
-  <view class="modal-title">新目标的名称是？</view>
-  <input maxlength="20" class="new-goal-title" placeholder="例如：阅读《瓦尔登湖》" bindinput="onNewGoalInput" />
-  <view class="button-group">
-    <view class="cancel" bind:tap="onCancelCreate">取消</view>
-    <view class="confirm" bind:tap="onAddGoal">确定</view>
-  </view>
-</view>
+
+<m-modal title="新目标的名称是？" wx:if="{{creatingGoal}}" inputPlaceholder="例如：阅读《瓦尔登湖》" bind:confirm="onAddGoal" bind:cancel="onCancelCreate"/>

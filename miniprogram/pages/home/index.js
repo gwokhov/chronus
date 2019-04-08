@@ -15,7 +15,6 @@ Page({
     userInfo: null,
     creatingGoal: false,
     uploadingGoal: false,
-    newGoalTitle: '',
     goalList: null,
     wholeTime: '',
     hasInitChart: false,
@@ -68,8 +67,9 @@ Page({
     })
   },
 
-  onAddGoal() {
-    if (!this.data.newGoalTitle.length) {
+  onAddGoal(e) {
+    let newGoalTitle = e.detail
+    if (!newGoalTitle.length) {
       showToast('标题不能为空')
       return
     }
@@ -77,7 +77,7 @@ Page({
     if (this.data.uploadingGoal) return
 
     this.data.uploadingGoal = true
-    HomeModel.addGoal(globalEnv.data.userId, this.data.newGoalTitle).then(
+    HomeModel.addGoal(globalEnv.data.userId, newGoalTitle).then(
       res => {
         this.setData({
           creatingGoal: false

@@ -13,9 +13,17 @@
 }
 
 .header > .remove-goal {
+  margin-left: auto;
+}
+
+.header > .edit-goal-title {
+  margin-left: 16rpx;
+}
+
+.header > .remove-goal,
+.header > .edit-goal-title {
   width: 44rpx;
   height: 44rpx;
-  margin-left: auto;
   flex-shrink: 0;
 }
 

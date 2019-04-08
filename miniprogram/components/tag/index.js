@@ -1,5 +1,1 @@
-Component({
-  properties: {
-    text: String
-  }
-})
+Component({})

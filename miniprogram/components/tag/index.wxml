@@ -1,1 +1,3 @@
-<view class="tag">{{text}}</view>
+<view class="tag">
+  <slot></slot>
+</view>

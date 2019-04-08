@@ -1,0 +1,11 @@
+<!-- 遮罩层 -->
+<view class="mask"></view>
+<!-- 目标创建对话框 -->
+<view class="create-modal">
+  <view class="modal-title">{{title}}</view>
+  <input maxlength="16" class="new-goal-title" placeholder="{{inputPlaceholder}}" bindinput="onInput" />
+  <view class="button-group">
+    <view class="cancel" bind:tap="onCancel">取消</view>
+    <view class="confirm" bind:tap="onConfirm">确定</view>
+  </view>
+</view>

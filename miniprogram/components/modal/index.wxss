@@ -1,0 +1,68 @@
+.mask {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* 创建目标对话框 */
+.create-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  box-sizing: border-box;
+  padding: 48rpx 48rpx;
+  width: 80%;
+  border-radius: 20rpx;
+  background-color: #fff;
+  transform: translateY(-60%) translateX(-50%);
+  box-shadow: 0 8rpx 80rpx rgba(0, 0, 0, 0.3);
+  animation: show-modal 150ms ease-out;
+}
+
+@keyframes show-modal {
+  from {
+    transform: translateY(200%) translateX(-50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(-60%) translateX(-50%);
+    opacity: 1;
+  }
+}
+
+.create-modal > .modal-title {
+  color: #333;
+  font-weight: bold;
+  font-size: 40rpx;
+}
+
+.create-modal > .new-goal-title {
+  margin-top: 56rpx;
+  padding: 8rpx;
+  border-bottom: 4rpx solid #1976d2;
+  font-size: 32rpx;
+}
+
+.create-modal > .button-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 56rpx;
+  font-weight: bold;
+  font-size: 28rpx;
+}
+
+.button-group .cancel {
+  color: #666;
+}
+
+.button-group .confirm {
+  margin-left: 36rpx;
+  padding: 8rpx 20rpx;
+  border-radius: 12rpx;
+  background-color: #1565c0;
+  color: white;
+}

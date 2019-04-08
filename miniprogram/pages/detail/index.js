@@ -10,7 +10,8 @@ Page({
     lastUpdate: '',
     time: '',
     longestTime: '',
-    goalRecords: null
+    goalRecords: null,
+    editingGoal: false
   },
 
   onLoad: function(options) {
@@ -38,6 +39,25 @@ Page({
           this.data.goalTitle
       })
     }
+  },
+
+  onEditGoalTitle() {
+    this.setData({
+      editingGoal: true
+    })
+  },
+
+  onEditCompleted(e) {
+    console.log(e.detail)
+    this.setData({
+      editingGoal: false
+    })
+  },
+
+  onEditCancel() {
+    this.setData({
+      editingGoal: false
+    })
   },
 
   onRemoveGoal() {
