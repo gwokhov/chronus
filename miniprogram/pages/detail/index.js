@@ -11,7 +11,8 @@ Page({
     time: '',
     longestTime: '',
     goalRecords: null,
-    editingGoal: false
+    editingGoalTitle: false,
+    uploadingGoalTitle: false
   },
 
   onLoad: function(options) {
@@ -48,10 +49,31 @@ Page({
   },
 
   onEditCompleted(e) {
-    console.log(e.detail)
-    this.setData({
-      editingGoal: false
-    })
+    if (!e.detail.length) {
+      showToast('标题不能为空')
+      return
+    }
+
+    if (this.data.uploadingGoalTitle) return
+
+    this.data.uploadingGoalTitle = true
+
+    DetailModel.editGoalTitle(this.data.goalId, e.detail)
+      .then(res => {
+        this.setData({
+          editingGoal: false,
+          goalTitle: e.detail
+        })
+        this.data.uploadingGoalTitle = false
+        showToast('修改成功', true)
+      })
+      .catch(err => {
+        this.setData({
+          editingGoal: false
+        })
+        this.data.uploadingGoalTitle = false
+        showToast('修改失败')
+      })
   },
 
   onEditCancel() {

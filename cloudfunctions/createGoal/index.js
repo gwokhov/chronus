@@ -19,15 +19,6 @@ exports.main = async (event, context) => {
       }
     })
 
-    // await db
-    //   .collection('users')
-    //   .doc(userId)
-    //   .update({
-    //     data: {
-    //       goals: _.push([goal._id])
-    //     }
-    //   })
-
     await db
       .collection('goal-records')
       .add({

@@ -55,6 +55,16 @@ class DetailModel {
     })
     return durationFormatText(max)
   }
+
+  static editGoalTitle(goalId, goalTitle) {
+    return wx.cloud.callFunction({
+      name: 'editGoalTitle',
+      data: {
+        goalId,
+        goalTitle
+      }
+    })
+  }
 }
 
 export { DetailModel }
