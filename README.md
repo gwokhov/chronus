@@ -32,6 +32,7 @@
 ├───cloudfunctions   //云函数存放目录
 │   ├───addGoalRecord   //添加目标记录
 │   ├───createGoal   //创建目标
+│   ├───editGoalTitle   //修改目标标题
 │   ├───getGoalData   //获取单个目标信息
 │   ├───getGoalList   //获取全部目标
 │   ├───login   //注册openid
@@ -39,6 +40,7 @@
 └───miniprogram   //小程序存放目录
     ├───components   //组件存放目录
     │   ├───loading   //加载组件
+│   │   ├───modal   //输入框组件
     │   ├───tag   //标签组件
     │   └───tips   //提示组件
     │       └───images
