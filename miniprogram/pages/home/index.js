@@ -98,10 +98,9 @@ Page({
 
   onGoalClick(e) {
     let goalId = e.currentTarget.dataset.goalId
-    let goalTitle = e.currentTarget.dataset.goalTitle
 
     wx.navigateTo({
-      url: '/pages/detail/index?id=' + goalId + '&title=' + goalTitle
+      url: '/pages/detail/index?id=' + goalId
     })
   },
 

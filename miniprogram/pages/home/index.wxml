@@ -34,7 +34,7 @@
     个目标：
   </view>
   <view>
-    <view class="project" wx:for="{{goalList}}" wx:key="_id" bind:tap="onGoalClick" data-goal-id="{{item._id}}" data-goal-title="{{item.title}}">
+    <view class="project" wx:for="{{goalList}}" wx:key="_id" bind:tap="onGoalClick" data-goal-id="{{item._id}}">
       <view class="title">{{item.title}}</view>
       <view class="tags">
         <m-tag>累计: {{item.duration}}</m-tag>

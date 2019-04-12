@@ -16,10 +16,7 @@ Page({
   },
 
   onLoad: function(options) {
-    this.setData({
-      goalId: options.id,
-      goalTitle: options.title
-    })
+    this.data.goalId = options.id
   },
 
   onShow() {
@@ -37,7 +34,7 @@ Page({
           '/pages/timer/index?id=' +
           this.data.goalId +
           '&title=' +
-          this.data.goalTitle
+          encodeURIComponent(this.data.goalTitle)
       })
     }
   },
@@ -61,8 +58,7 @@ Page({
     DetailModel.editGoalTitle(this.data.goalId, e.detail)
       .then(res => {
         this.setData({
-          editingGoal: false,
-          goalTitle: e.detail
+          editingGoal: false
         })
         this.data.uploadingGoalTitle = false
         showToast('修改成功', true)
@@ -102,6 +98,7 @@ Page({
       res => {
         let data = DetailModel.formatGoalData(res.result)
         this.setData({
+          goalTitle: data.title,
           lastUpdate: data.lastUpdate,
           time: data.time,
           longestTime: data.longestTime,

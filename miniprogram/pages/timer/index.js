@@ -16,7 +16,7 @@ Page({
 
   onLoad(options) {
     this.setData({
-      goalTitle: options.title,
+      goalTitle: decodeURIComponent(options.title),
       goalId: options.id
     })
     this.initCounter()
@@ -41,7 +41,7 @@ Page({
         '/pages/summary/index?id=' +
         this.data.goalId +
         '&title=' +
-        this.data.goalTitle +
+        encodeURIComponent(this.data.goalTitle) +
         '&begin=' +
         beginDate +
         '&end=' +

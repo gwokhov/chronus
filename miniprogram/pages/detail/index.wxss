@@ -7,8 +7,8 @@
 .header > .goal-title {
   font-size: 44rpx;
   font-weight: bold;
-  height: 48rpx;
   line-height: 48rpx;
+  height: 48rpx;
   vertical-align: text-top;
 }
 
@@ -16,15 +16,17 @@
   margin-left: auto;
 }
 
-.header > .edit-goal-title {
-  margin-left: 16rpx;
-}
-
-.header > .remove-goal,
-.header > .edit-goal-title {
+.header > .remove-goal {
   width: 44rpx;
   height: 44rpx;
   flex-shrink: 0;
+}
+
+.header > .edit-goal-title {
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 16rpx;
+  align-self: flex-end;
 }
 
 .subtitle {

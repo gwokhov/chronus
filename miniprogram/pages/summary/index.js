@@ -29,7 +29,7 @@ Page({
     this.data.duration = options.duration
 
     this.setData({
-      goalTitle: options.title,
+      goalTitle: decodeURIComponent(options.title),
       beginTime: timeFormat(options.begin),
       beginDate: dateFormat(options.begin),
       endTime: timeFormat(options.end),
