@@ -11,7 +11,7 @@ Page({
     time: '',
     longestTime: '',
     goalRecords: null,
-    editingGoalTitle: false,
+    editingGoal: false,
     uploadingGoalTitle: false
   },
 

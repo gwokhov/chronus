@@ -1,3 +1,5 @@
+<view class="{{creatingGoal ? 'blur-bg' : ''}}">
+
 <!-- 用户信息 -->
 <view class='user-info-container'>
   <image class='avatar' src='{{userInfo.avatarUrl}}' mode='aspectFit'></image>
@@ -49,5 +51,7 @@
 <m-tips warn="Hi，你还没有创建目标呢" tips="点击右下角的 “+” 开始吧！" wx:else></m-tips>
 <!-- 创建按钮 -->
 <image class="create" src="../../images/home/create.png" bind:tap="onCreateGoal" />
+
+</view>
 
 <m-modal title="新目标的名称是？" wx:if="{{creatingGoal}}" inputPlaceholder="例如：阅读《瓦尔登湖》" bind:confirm="onAddGoal" bind:cancel="onCancelCreate"/>

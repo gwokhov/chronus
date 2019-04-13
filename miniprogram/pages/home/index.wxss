@@ -1,3 +1,8 @@
+.blur-bg {
+  filter: blur(10rpx);
+  overflow: hidden;
+}
+
 /* 用户信息显示 */
 .user-info-container {
   display: flex;

@@ -1,3 +1,8 @@
+.blur-bg {
+  filter: blur(10rpx);
+  overflow: hidden;
+}
+
 .header {
   display: flex;
   margin: 24rpx 40rpx;
@@ -8,12 +13,13 @@
   font-size: 44rpx;
   font-weight: bold;
   line-height: 48rpx;
-  height: 48rpx;
+  min-height: 48rpx;
   vertical-align: text-top;
 }
 
 .header > .remove-goal {
   margin-left: auto;
+  padding-left: 12px;
 }
 
 .header > .remove-goal {

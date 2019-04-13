@@ -1,7 +1,7 @@
 .header > .title {
   margin: 0 40rpx;
   margin-top: 40rpx;
-  height: 48rpx;
+  min-height: 48rpx;
   font-weight: bold;
   font-size: 48rpx;
 }
