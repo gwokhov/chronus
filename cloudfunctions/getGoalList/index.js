@@ -7,7 +7,7 @@ const _ = db.command
 exports.main = async (event, context) => {
   let userId = event.userId
 
-  console.log(userId)
+  if(!userId) return
 
   try {
     return await db

@@ -8,6 +8,8 @@ exports.main = async (event, context) => {
   let goalTitle = event.title
   let userId = event.userId
 
+  if (!goalTitle || !userId) return
+
   try {
     let goal = await db.collection('goals').add({
       data: {
@@ -19,14 +21,11 @@ exports.main = async (event, context) => {
       }
     })
 
-    await db
-      .collection('goal-records')
-      .add({
-        data: {
-          goalId: goal._id
-        }
-      })
-      
+    await db.collection('goal-records').add({
+      data: {
+        goalId: goal._id
+      }
+    })
   } catch (e) {
     console.log(e)
   }

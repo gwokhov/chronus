@@ -7,6 +7,8 @@ exports.main = async (event, context) => {
   let goalTitle = event.goalTitle
   let goalId = event.goalId
 
+  if(!goalId || !goalTitle) return
+
   try {
     return await db.collection('goals').doc(goalId).update({
       data: {

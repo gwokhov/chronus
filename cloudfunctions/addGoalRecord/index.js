@@ -11,6 +11,8 @@ exports.main = async (event, context) => {
   let summary = event.summary
   let time = event.time
 
+  if(!goalId) return
+
   try {
     await db
       .collection('goal-records')

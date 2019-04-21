@@ -7,7 +7,7 @@ const _ = db.command
 exports.main = async (event, context) => {
   let goalId = event.goalId
 
-  console.log(goalId)
+  if(!goalId) return
 
   try {
     let goalInfo = await db

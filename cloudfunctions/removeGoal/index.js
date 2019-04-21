@@ -7,6 +7,8 @@ const _ = db.command
 exports.main = async (event, context) => {
   let goalId = event.goalId
 
+  if(!goalId) return
+
   try {
     await db
       .collection('goal-records')

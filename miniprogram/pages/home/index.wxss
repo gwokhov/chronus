@@ -159,6 +159,7 @@ ec-canvas {
   font-weight: bold;
   border-radius: 24rpx;
   font-size: 24rpx;
+  flex-shrink: 0;
 }
 
 @keyframes tip-ani {
