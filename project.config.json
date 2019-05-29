@@ -10,7 +10,9 @@
 	},
 	"appid": "wxf3b7c8354b7ef2af",
 	"projectname": "Chronus",
-	"libVersion": "2.2.5",
+	"libVersion": "2.7.0",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

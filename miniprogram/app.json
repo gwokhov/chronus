@@ -11,5 +11,6 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Chronus",
     "navigationBarTextStyle": "black"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

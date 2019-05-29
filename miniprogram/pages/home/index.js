@@ -187,7 +187,7 @@ Page({
   },
 
   getGoalList() {
-    if(!globalEnv.data.userId) return
+    if (!globalEnv.data.userId) return
     
     HomeModel.getGoalList(globalEnv.data.userId).then(
       res => {
