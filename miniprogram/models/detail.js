@@ -49,9 +49,7 @@ class DetailModel {
     if (!goalRecords) return durationFormatText(0)
     let max = 0
     goalRecords.forEach(record => {
-      if (record.time > 0) {
-        max = record.time
-      }
+      max = (record.time > max) ? record.time : max
     })
     return durationFormatText(max)
   }
