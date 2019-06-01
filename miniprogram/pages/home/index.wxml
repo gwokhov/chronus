@@ -13,8 +13,8 @@
 </view>
 <!-- 饼状图 -->
 <view class="pie-container">
-  <image class="empty-img" wx:if="{{goalList.length === 0}}" mode="aspectFit" src="../../images/home/empty.png" bind:tap="onCreateGoal" />
-  <view class="pie" hidden="{{creatingGoal || goalList.length === 0}}">
+  <image class="empty-img" wx:if="{{goalList.length === 0 || !goalList}}" mode="aspectFit" src="../../images/home/empty.png" bind:tap="onCreateGoal" />
+  <view class="pie" hidden="{{creatingGoal}}">
     <ec-canvas id="chart" ec="{{ chart }}"></ec-canvas>
   </view>
 </view>

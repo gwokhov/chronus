@@ -55,9 +55,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .empty-img {
+  position: absolute;
   width: 50%;
 }
 
