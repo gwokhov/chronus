@@ -1,7 +1,7 @@
 import {
-  dateFormat,
-  timeFormat,
-  durationFormatText
+  formatDate,
+  formatTime,
+  formatDurationToStr
 } from '../../utils/dateTimeUtil'
 import { SummaryModel } from '../../models/summary'
 import { showToast } from '../../utils/UIUtil'
@@ -30,11 +30,11 @@ Page({
 
     this.setData({
       goalTitle: decodeURIComponent(options.title),
-      beginTime: timeFormat(options.begin),
-      beginDate: dateFormat(options.begin),
-      endTime: timeFormat(options.end),
-      endDate: dateFormat(options.end),
-      durationText: durationFormatText(options.duration)
+      beginTime: formatTime(options.begin),
+      beginDate: formatDate(options.begin),
+      endTime: formatTime(options.end),
+      endDate: formatDate(options.end),
+      durationText: formatDurationToStr(options.duration)
     })
   },
 

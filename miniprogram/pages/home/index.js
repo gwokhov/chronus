@@ -3,7 +3,7 @@ import pieOptions from '../../config/pieDefOption'
 import { showToast } from '../../utils/UIUtil'
 import { HomeModel } from '../../models/home'
 import { TimerState } from '../../config/timerState'
-import { timerFormat } from '../../utils/dateTimeUtil'
+import { formatDurationToTimer } from '../../utils/dateTimeUtil'
 
 const globalEnv = getApp()
 
@@ -125,18 +125,18 @@ Page({
       case TimerState.Pause:
         stateDesc = '暂停中'
         this.setData({
-          timer: timerFormat(timerInfo.duration),
+          timer: formatDurationToTimer(timerInfo.duration),
           timerGoalId: timerInfo.goalId
         })
         break
       case TimerState.Ongoing:
         stateDesc = '进行中'
         this.setData({
-          timer: timerFormat(timerInfo.duration)
+          timer: formatDurationToTimer(timerInfo.duration)
         })
         globalEnv.startTimer(null, null, duration => {
           this.setData({
-            timer: timerFormat(duration),
+            timer: formatDurationToTimer(duration),
             timerGoalId: timerInfo.goalId
           })
         })

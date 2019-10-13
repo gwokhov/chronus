@@ -1,80 +1,78 @@
-var dateFormat = function(dateStr) {
-  if (!dateStr) return null
-  var date = new Date(dateStr)
-  var month = date.getMonth() + 1
-  var day = date.getDate()
-  return month + '月' + day + '日'
+export function formatDate(dateStr) {
+  if (!dateStr) {
+    return false
+  }
+  const date = new Date(dateStr)
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  return `${month}月${day}日`
 }
 
-var timeFormat = function(dateStr) {
-  if (!dateStr) return null
-  var date = new Date(dateStr)
-  var hour = date.getHours()
-  var minute = date.getMinutes()
-  minute = minute < 10 ? '0' + minute.toString() : minute
-  return hour + ':' + minute
+export function formatTime(dateStr) {
+  if (!dateStr) {
+    return false
+  }
+  const date = new Date(dateStr)
+  const hour = date.getHours()
+  const minute = padZero(date.getMinutes())
+  return `${hour}:${minute}`
 }
 
-var dateTimeFormat = function(dateStr) {
-  if (!dateStr) return null
-  return dateFormat(dateStr) + ' ' + timeFormat(dateStr)
+export function formatDateTime(dateStr) {
+  if (!dateStr) {
+    return false
+  }
+  return `${formatDate(dateStr)} ${formatTime(dateStr)}`
 }
 
-var durationFormat = function(duration) {
-  let before = ''
-  let after = ''
+export function formatDuration(duration) {
+  let pref = ''
+  let suff = ''
   if (duration <= 0) {
-    after = '未开始'
+    suff = '未开始'
   } else if (duration <= 1) {
-    after = '1秒不够'
+    suff = '1秒不够'
   } else if (duration < 60) {
-    before = parseInt(duration)
-    after = '秒'
+    pref = parseInt(duration)
+    suff = '秒'
   } else if (duration / 60 < 60) {
-    before = parseInt(duration / 60)
-    after = '分钟'
+    pref = parseInt(duration / 60)
+    suff = '分钟'
   } else if (duration / 3600 < 24) {
-    before = parseInt(duration / 3600)
-    after = '小时'
+    pref = parseInt(duration / 3600)
+    suff = '小时'
   } else {
-    before = parseInt(duration / 86400)
-    after = '天'
+    pref = parseInt(duration / 86400)
+    suff = '天'
   }
   return {
-    before,
-    after
+    pref,
+    suff
   }
 }
 
-var countDuration = function(startDate, endDate) {
-  if (!startDate && !endDate) return
-  if (endDate.getTime() - startDate.getTime() <= 0) return
-
-  return Math.floor((endDate.getTime() - startDate.getTime()) / 1000)
+export function formatDurationToStr(duration) {
+  const obj = formatDuration(duration)
+  return obj.pref + obj.suff
 }
 
-var durationFormatText = function(duration) {
-  let obj = durationFormat(duration)
-  return obj.before + obj.after
+export function formatDurationToTimer(duration) {
+  const second = padZero(duration % 60)
+  const minute = padZero(Math.floor(duration / 60) % 60)
+  const hour = padZero(Math.floor(duration / 60 / 60) % 60)
+  return `${hour}:${minute}:${second}`
 }
 
-var addRealZero = function(number) {
-  return number < 10 ? '0' + number.toString() : number.toString()
+export function countDuration(startDate, endDate) {
+  if (!startDate || !endDate) {
+    return
+  }
+  const duration = +endDate - +startDate
+  if (duration < 0) return
+
+  return Math.floor(duration / 1000)
 }
 
-var timerFormat = function(duration) {
-  let seconds = addRealZero(duration % 60)
-  let minutes = addRealZero(Math.floor(duration / 60) % 60)
-  let hours = addRealZero(Math.floor(duration / 60 / 60) % 60)
-  return hours + ':' + minutes + ':' + seconds
-}
-
-export {
-  dateFormat,
-  timeFormat,
-  dateTimeFormat,
-  durationFormat,
-  durationFormatText,
-  timerFormat,
-  countDuration
+function padZero(number) {
+  return +number < 10 ? '0' + number.toString() : number.toString()
 }

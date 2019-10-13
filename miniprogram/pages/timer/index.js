@@ -1,4 +1,4 @@
-import { timerFormat } from '../../utils/dateTimeUtil'
+import { formatDurationToTimer } from '../../utils/dateTimeUtil'
 import { showModal } from '../../utils/UIUtil'
 import { TimerState } from '../../config/timerState'
 
@@ -72,13 +72,13 @@ Page({
       case TimerState.Ongoing:
       case TimerState.None:
         this.setData({
-          timer: timerFormat(timerInfo.duration)
+          timer: formatDurationToTimer(timerInfo.duration)
         })
         this.startCounter()
         break
       case TimerState.Pause:
         this.setData({
-          timer: timerFormat(timerInfo.duration),
+          timer: formatDurationToTimer(timerInfo.duration),
           isOngoing: false
         })
         break
@@ -92,7 +92,7 @@ Page({
 
     globalEnv.startTimer(this.data.goalId, this.data.goalTitle, duration => {
       this.setData({
-        timer: timerFormat(duration)
+        timer: formatDurationToTimer(duration)
       })
     })
   },

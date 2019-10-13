@@ -1,8 +1,8 @@
 import {
-  dateFormat,
-  dateTimeFormat,
-  durationFormat,
-  durationFormatText
+  formatDate,
+  formatDateTime,
+  formatDuration,
+  formatDurationToStr
 } from '../utils/dateTimeUtil'
 
 class DetailModel {
@@ -26,8 +26,8 @@ class DetailModel {
 
     return {
       title: goalInfo.title,
-      time: durationFormatText(goalInfo.time),
-      lastUpdate: dateFormat(goalInfo.lastUpdate),
+      time: formatDurationToStr(goalInfo.time),
+      lastUpdate: formatDate(goalInfo.lastUpdate),
       goalRecords: this.formatGoalRecords(goalRecords),
       longestTime: this.getLongestTime(goalRecords)
     }
@@ -36,23 +36,23 @@ class DetailModel {
   static formatGoalRecords(goalRecords) {
     if (!goalRecords) return []
     goalRecords.forEach(record => {
-      ;(record.duration = durationFormat(record.time)),
+      ;(record.duration = formatDuration(record.time)),
         (record.date =
-          dateTimeFormat(record.beginDate) +
+          formatDateTime(record.beginDate) +
           ' ~ ' +
-          dateTimeFormat(record.endDate))
+          formatDateTime(record.endDate))
     })
     return goalRecords
   }
 
   static getLongestTime(goalRecords) {
-    if (!goalRecords) return durationFormatText(0)
+    if (!goalRecords) return formatDurationToStr(0)
     let max = 0
     goalRecords.forEach(record => {
       let time = parseInt(record.time, 10)
       max = (time > max) ? time : max
     })
-    return durationFormatText(max)
+    return formatDurationToStr(max)
   }
 
   static editGoalTitle(goalId, goalTitle) {

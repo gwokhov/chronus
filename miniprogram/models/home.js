@@ -1,4 +1,4 @@
-import { dateFormat, durationFormatText, dateTimeFormat } from '../utils/dateTimeUtil'
+import { formatDate, formatDurationToStr, formatDateTime } from '../utils/dateTimeUtil'
 const db = wx.cloud.database()
 
 class HomeModel {
@@ -54,12 +54,12 @@ class HomeModel {
   static formatGoalList(list) {
     let wholeTime = 0
     list.forEach(goal => {
-      goal.lastUpdate = dateTimeFormat(goal.lastUpdate)
+      goal.lastUpdate = formatDateTime(goal.lastUpdate)
       wholeTime += goal.time
-      goal.duration = durationFormatText(goal.time)
+      goal.duration = formatDurationToStr(goal.time)
       goal.time = (goal.time / ( 60 * 60)).toFixed(2)
     })
-    return { list, wholeTime: durationFormatText(wholeTime) }
+    return { list, wholeTime: formatDurationToStr(wholeTime) }
   }
 
   static serializeForChart(list) {
