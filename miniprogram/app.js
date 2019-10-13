@@ -1,4 +1,4 @@
-import { TimerState } from './config/timerState'
+import TimerState from './config/timerState'
 import { countDuration } from './utils/dateTimeUtil'
 
 App({
@@ -13,7 +13,7 @@ App({
 
     this.data = {
       timerId: -1,
-      timerState: TimerState.None,
+      timerState: TimerState.NONE,
       duration: 0,
       goalId: '',
       goalTitle: '',
@@ -28,7 +28,6 @@ App({
     let hideDate = this.data.hideDate
     if (!hideDate) return
 
-    console.log(this.data.lastShowDuration, countDuration(hideDate, new Date()))
     this.data.duration =
       this.data.lastShowDuration + countDuration(hideDate, new Date())
       
@@ -36,20 +35,20 @@ App({
   },
 
   onHide() {
-    if (this.data.timerState !== TimerState.Ongoing) return
+    if (this.data.timerState !== TimerState.ONGOING) return
     
     this.data.hideDate = new Date()
     this.data.lastShowDuration = this.data.duration
   },
 
   startTimer(goalId, goalTitle, onCount) {
-    if (this.data.timerState === TimerState.None) {
+    if (this.data.timerState === TimerState.NONE) {
       this.data.goalId = goalId
       this.data.goalTitle = goalTitle
       this.data.beginDate = new Date()
     }
 
-    this.data.timerState = TimerState.Ongoing
+    this.data.timerState = TimerState.ONGOING
 
     if (this.data.timerId !== -1) {
       clearInterval(this.data.timerId)
@@ -65,13 +64,13 @@ App({
   pauseTimer() {
     clearInterval(this.data.timerId)
     this.data.timerId = -1
-    this.data.timerState = TimerState.Pause
+    this.data.timerState = TimerState.PAUSE
   },
 
   stopTimer() {
     clearInterval(this.data.timerId)
     this.data.timerId = -1
-    this.data.timerState = TimerState.None
+    this.data.timerState = TimerState.NONE
     this.data.goalId = ''
     this.data.goalTitle = ''
     this.data.duration = 0

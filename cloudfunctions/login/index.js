@@ -5,15 +5,19 @@ const db = cloud.database()
 
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
-  const openid = wxContext.OPENID
+  const openId = wxContext.OPENID
 
-  return [
-    await db
-      .collection('users')
-      .where({
-        _openid: openid
-      })
-      .get(),
-    openid
-  ]
+  const result = await db
+    .collection('users')
+    .where({
+      _openid: openId
+    })
+    .get()
+
+  const idData = result.data[0]
+
+  return {
+    userId: idData && idData._id && idData._openid ? idData._id : null,
+    openId
+  }
 }

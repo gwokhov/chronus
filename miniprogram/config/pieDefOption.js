@@ -11,18 +11,16 @@ export default {
     min: 0,
     max: 8,
     inRange: {
-        colorLightness: [0.8, 0.46]
+      colorLightness: [0.8, 0.46]
     }
-},
+  },
   series: [
     {
       name: '累计',
       type: 'pie',
       radius: '70%',
       center: ['50%', '50%'],
-      data: [
-        { value: 0, name: '暂无数据' }
-      ],
+      data: [{ value: 0, name: '暂无数据' }],
       roseType: 'radius',
       label: {
         normal: {

@@ -2,7 +2,7 @@ import * as echarts from '../../libs/ec-canvas/echarts'
 import pieOptions from '../../config/pieDefOption'
 import { showToast } from '../../utils/UIUtil'
 import { HomeModel } from '../../models/home'
-import { TimerState } from '../../config/timerState'
+import TimerState from '../../config/timerState'
 import { formatDurationToTimer } from '../../utils/dateTimeUtil'
 
 const globalEnv = getApp()
@@ -119,17 +119,17 @@ Page({
     let stateDesc = ''
 
     switch (timerInfo.timerState) {
-      case TimerState.None:
+      case TimerState.NONE:
         stateDesc = ''
         break
-      case TimerState.Pause:
+      case TimerState.PAUSE:
         stateDesc = '暂停中'
         this.setData({
           timer: formatDurationToTimer(timerInfo.duration),
           timerGoalId: timerInfo.goalId
         })
         break
-      case TimerState.Ongoing:
+      case TimerState.ONGOING:
         stateDesc = '进行中'
         this.setData({
           timer: formatDurationToTimer(timerInfo.duration)
@@ -158,13 +158,13 @@ Page({
   getOpenidAndUserId() {
     HomeModel.getOpenidAndUserId().then(
       res => {
-        let ids = res.result
-        globalEnv.data.openid = ids[1]
+        let idData = res.result
+        globalEnv.data.openid = idData.openId
 
-        if (!ids[0].data.length) {
+        if (!idData.userId) {
           this.addUserId()
         } else {
-          globalEnv.data.userId = ids[0].data[0]._id
+          globalEnv.data.userId = idData.userId
           this.getGoalList()
         }
       },

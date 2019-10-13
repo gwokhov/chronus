@@ -1,7 +1,5 @@
-const TimerState = {
-  None: -1,
-  Pause: 0,
-  Ongoing: 1
+export default {
+  NONE: -1,
+  PAUSE: 0,
+  ONGOING: 1
 }
-
-export {TimerState}

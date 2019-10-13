@@ -1,6 +1,6 @@
 import { formatDurationToTimer } from '../../utils/dateTimeUtil'
 import { showModal } from '../../utils/UIUtil'
-import { TimerState } from '../../config/timerState'
+import TimerState from '../../config/timerState'
 
 const globalEnv = getApp()
 
@@ -69,14 +69,14 @@ Page({
     let timerInfo = globalEnv.checkExistTimer()
 
     switch (timerInfo.timerState) {
-      case TimerState.Ongoing:
-      case TimerState.None:
+      case TimerState.ONGOING:
+      case TimerState.NONE:
         this.setData({
           timer: formatDurationToTimer(timerInfo.duration)
         })
         this.startCounter()
         break
-      case TimerState.Pause:
+      case TimerState.PAUSE:
         this.setData({
           timer: formatDurationToTimer(timerInfo.duration),
           isOngoing: false
