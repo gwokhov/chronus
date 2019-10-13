@@ -1,4 +1,4 @@
-import { DetailModel } from '../../models/detail'
+import DetailModel from '../../models/detail'
 import { showToast, showModal } from '../../utils/UIUtil'
 
 const globalEnv = getApp()
@@ -11,7 +11,7 @@ Page({
     time: '',
     longestTime: '',
     goalRecords: null,
-    editingGoal: false,
+    isEditingGoal: false,
     uploadingGoalTitle: false
   },
 
@@ -28,20 +28,19 @@ Page({
 
     if (timerInfo.goalId !== '' && timerInfo.goalId !== this.data.goalId) {
       showToast('你目前已经有目标在进行中')
-    } else {
-      wx.navigateTo({
-        url:
-          '/pages/timer/index?id=' +
-          this.data.goalId +
-          '&title=' +
-          encodeURIComponent(this.data.goalTitle)
-      })
+      return
     }
+
+    wx.navigateTo({
+      url: `/pages/timer/index?id=${
+        this.data.goalId
+      }&title=${encodeURIComponent(this.data.goalTitle)}`
+    })
   },
 
   onEditGoalTitle() {
     this.setData({
-      editingGoal: true
+      isEditingGoal: true
     })
   },
 
@@ -58,14 +57,14 @@ Page({
     DetailModel.editGoalTitle(this.data.goalId, e.detail)
       .then(res => {
         this.setData({
-          editingGoal: false
+          isEditingGoal: false
         })
         this.data.uploadingGoalTitle = false
         showToast('修改成功', true)
       })
       .catch(err => {
         this.setData({
-          editingGoal: false
+          isEditingGoal: false
         })
         this.data.uploadingGoalTitle = false
         showToast('修改失败')
@@ -74,12 +73,12 @@ Page({
 
   onEditCancel() {
     this.setData({
-      editingGoal: false
+      isEditingGoal: false
     })
   },
 
   onRemoveGoal() {
-    showModal('', '是否删除“' + this.data.goalTitle + '”', () => {
+    showModal('', `是否删除 “${this.data.goalTitle}”`, () => {
       DetailModel.removeGoal(this.data.goalId).then(
         res => {
           wx.navigateBack({

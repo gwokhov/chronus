@@ -1,7 +1,7 @@
 import * as echarts from '../../libs/ec-canvas/echarts'
 import pieOptions from '../../config/pieDefOption'
 import { showToast } from '../../utils/UIUtil'
-import { HomeModel } from '../../models/home'
+import HomeModel from '../../models/home'
 import TimerState from '../../config/timerState'
 import { formatDurationToTimer } from '../../utils/dateTimeUtil'
 
@@ -13,23 +13,34 @@ Page({
       lazyLoad: true
     },
     userInfo: null,
-    creatingGoal: false,
-    uploadingGoal: false,
     goalList: null,
     wholeTime: '',
     hasInitChart: false,
+    isCreating: false,
+    isUploading: false,
     timerGoalTitle: '',
     timerGoalId: '',
     timer: '00:00:00',
     timerState: null
   },
 
-  onLoad(options) {
-    this.getUserInfo()
+  onLoad() {
+    this.initUserInfo()
   },
 
   onShow() {
-    this.getOpenidAndUserId()
+    // 若初始化id失败则在catch中初始化userId，否则直接获取列表
+    this.initOpenIdAndUserId()
+      .then()
+      .catch(err => {
+        if (err === 0) {
+          return this.initUserId()
+        }
+      })
+      .then(() => {
+        this.getGoalList()
+      })
+
     this.setTimerTips()
   },
 
@@ -37,6 +48,9 @@ Page({
     this.chartComponent = this.selectComponent('#chart')
   },
 
+  /**
+   * 点击授权按钮获取信息
+   */
   onAuthorize(e) {
     if (e.detail.userInfo) {
       this.setData({
@@ -51,13 +65,13 @@ Page({
       return
     }
     this.setData({
-      creatingGoal: true
+      isCreating: true
     })
   },
 
   onCancelCreate() {
     this.setData({
-      creatingGoal: false
+      isCreating: false
     })
   },
 
@@ -74,22 +88,22 @@ Page({
       return
     }
 
-    if (this.data.uploadingGoal) return
+    if (this.data.isUploading) return
 
-    this.data.uploadingGoal = true
+    this.data.isUploading = true
     HomeModel.addGoal(globalEnv.data.userId, newGoalTitle).then(
       res => {
         this.setData({
-          creatingGoal: false
+          isCreating: false
         })
-        this.data.uploadingGoal = false
+        this.data.isUploading = false
         showToast('创建成功', true)
         this.getGoalList()
       },
       err => {
         this.setData({
-          creatingGoal: false,
-          uploadingGoal: false
+          isCreating: false,
+          isUploading: false
         })
         showToast('创建失败')
       }
@@ -147,48 +161,61 @@ Page({
     })
   },
 
-  getUserInfo() {
-    HomeModel.getUserInfo().then(res => {
-      this.setData({
-        userInfo: res.userInfo
-      })
+  initUserInfo() {
+    HomeModel.getUserInfo().then(
+      res => {
+        this.setData({
+          userInfo: res.userInfo
+        })
+      },
+      err => {
+        showToast('请先授权登录')
+        console.log(err)
+      }
+    )
+  },
+
+  initOpenIdAndUserId() {
+    return new Promise((resolve, reject) => {
+      HomeModel.getOpenIdAndUserId().then(
+        res => {
+          const idData = res.result
+          globalEnv.data.openid = idData.openId
+          if (idData.userId) {
+            globalEnv.data.userId = idData.userId
+            resolve()
+          } else {
+            reject(0)
+          }
+        },
+        err => {
+          if (err.errCode === -1) {
+            showToast('网络不佳，登录失败')
+          } else {
+            showToast(`登录失败，错误码：${err.errCode}`)
+          }
+          reject(-1)
+        }
+      )
     })
   },
 
-  getOpenidAndUserId() {
-    HomeModel.getOpenidAndUserId().then(
-      res => {
-        let idData = res.result
-        globalEnv.data.openid = idData.openId
-
-        if (!idData.userId) {
-          this.addUserId()
-        } else {
-          globalEnv.data.userId = idData.userId
-          this.getGoalList()
+  initUserId() {
+    return new Promise((resolve, reject) => {
+      HomeModel.addUserId().then(
+        res => {
+          globalEnv.data.userId = res._id
+          resolve()
+        },
+        err => {
+          showToast(`添加用户id失败，错误码：${err.errCode}`)
+          reject()
         }
-      },
-      err => {
-        showToast('登录失败')
-      }
-    )
-  },
-
-  addUserId() {
-    HomeModel.addUserId().then(
-      res => {
-        globalEnv.data.userId = res._id
-        this.getGoalList()
-      },
-      err => {
-        showToast('添加用户id失败')
-      }
-    )
+      )
+    })
   },
 
   getGoalList() {
-    if (!globalEnv.data.userId) return
-    
     HomeModel.getGoalList(globalEnv.data.userId).then(
       res => {
         if (!res.result) {
@@ -230,9 +257,13 @@ Page({
   },
 
   setChartOption(chart) {
-    let data = HomeModel.serializeForChart(this.data.goalList)
-    let option = pieOptions
+    const data = HomeModel.serializeForChart(this.data.goalList)
+    console.log(data)
+    const option = pieOptions
     option.series[0].data = data
+    // option.visualMap.min = 0.19
+    // option.visualMap.max = 0.26
+    // option.visualMap.inRange.colorLightness = [0.8, 0.2]
     chart.setOption(option)
   }
 })

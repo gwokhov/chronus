@@ -1,25 +1,33 @@
-import { formatDate, formatDurationToStr, formatDateTime } from '../utils/dateTimeUtil'
+import {
+  formatDurationToStr,
+  formatDateTime
+} from '../utils/dateTimeUtil'
 const db = wx.cloud.database()
 
-class HomeModel {
+export default class HomeModel {
   static getUserInfo() {
     return new Promise((resolve, reject) => {
       wx.getSetting({
         success: res => {
           if (res.authSetting['scope.userInfo']) {
-            // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+            // 已经授权，可以直接调用 getUserInfo 获取头像昵称
             wx.getUserInfo({
               success: res => {
                 resolve(res)
               }
             })
+          } else {
+            reject(res)
           }
+        },
+        fail: err => {
+          reject(err)
         }
       })
     })
   }
 
-  static getOpenidAndUserId() {
+  static getOpenIdAndUserId() {
     return wx.cloud.callFunction({
       name: 'login',
       data: {}
@@ -57,7 +65,7 @@ class HomeModel {
       goal.lastUpdate = formatDateTime(goal.lastUpdate)
       wholeTime += goal.time
       goal.duration = formatDurationToStr(goal.time)
-      goal.time = (goal.time / ( 60 * 60)).toFixed(2)
+      goal.time = (goal.time / (60 * 60)).toFixed(2)
     })
     return { list, wholeTime: formatDurationToStr(wholeTime) }
   }
@@ -71,5 +79,3 @@ class HomeModel {
     return chartData
   }
 }
-
-export { HomeModel }

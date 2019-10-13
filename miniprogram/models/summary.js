@@ -1,4 +1,4 @@
-class SummaryModel {
+export default class SummaryModel {
   static addGoalRecord(goalId, beginDate, endDate, duration, summary) {
     return wx.cloud.callFunction({
       name: 'addGoalRecord',
@@ -12,5 +12,3 @@ class SummaryModel {
     })
   }
 }
-
-export { SummaryModel }

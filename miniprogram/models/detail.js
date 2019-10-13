@@ -5,7 +5,7 @@ import {
   formatDurationToStr
 } from '../utils/dateTimeUtil'
 
-class DetailModel {
+export default class DetailModel {
   static getGoalData(goalId) {
     return wx.cloud.callFunction({
       name: 'getGoalData',
@@ -65,5 +65,3 @@ class DetailModel {
     })
   }
 }
-
-export { DetailModel }

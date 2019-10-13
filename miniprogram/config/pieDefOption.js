@@ -1,11 +1,9 @@
 export default {
   backgroundColor: 'transparent',
-
   tooltip: {
     trigger: 'item',
     formatter: '{b}  {a}: {c} 小时 ({d}%)'
   },
-
   visualMap: {
     show: false,
     min: 0,
@@ -46,7 +44,7 @@ export default {
 
       animationType: 'scale',
       animationEasing: 'elasticOut',
-      animationDelay: function(idx) {
+      animationDelay: () => {
         return Math.random() * 200
       }
     }

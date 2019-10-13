@@ -3,7 +3,7 @@ import {
   formatTime,
   formatDurationToStr
 } from '../../utils/dateTimeUtil'
-import { SummaryModel } from '../../models/summary'
+import SummaryModel from '../../models/summary'
 import { showToast } from '../../utils/UIUtil'
 
 Page({
