@@ -75,23 +75,19 @@ Page({
     })
   },
 
-  onNewGoalInput(e) {
-    this.setData({
-      newGoalTitle: e.detail.value
-    })
-  },
-
   onAddGoal(e) {
-    let newGoalTitle = e.detail
-    if (!newGoalTitle.length) {
+    const title = e.detail
+    if (!title.length) {
       showToast('标题不能为空')
       return
     }
 
-    if (this.data.isUploading) return
+    if (this.data.isUploading) {
+      return
+    }
 
     this.data.isUploading = true
-    HomeModel.addGoal(globalEnv.data.userId, newGoalTitle).then(
+    HomeModel.addGoal(globalEnv.data.userId, title).then(
       res => {
         this.setData({
           isCreating: false
@@ -111,10 +107,10 @@ Page({
   },
 
   onGoalClick(e) {
-    let goalId = e.currentTarget.dataset.goalId
+    const { goalId } = e.currentTarget.dataset
 
     wx.navigateTo({
-      url: '/pages/detail/index?id=' + goalId
+      url: `/pages/detail/index?id=${goalId}`
     })
   },
 
@@ -258,7 +254,6 @@ Page({
 
   setChartOption(chart) {
     const data = HomeModel.serializeForChart(this.data.goalList)
-    console.log(data)
     const option = pieOptions
     option.series[0].data = data
     // option.visualMap.min = 0.19
