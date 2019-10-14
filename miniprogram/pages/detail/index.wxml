@@ -9,12 +9,12 @@
     <view class="time statistics-item">
       <image src="../../images/detail/time.png" />
       <view class="title">累计时间</view>
-      <view class="desc">{{time}}</view>
+      <view class="desc">{{duration}}</view>
     </view>
     <view class="longest-record statistics-item">
       <image src="../../images/detail/longest-record.png" />
       <view class="title">最长时间</view>
-      <view class="desc">{{longestTime}}</view>
+      <view class="desc">{{longestDuration}}</view>
     </view>
     <view class="recent-date statistics-item">
       <image src="../../images/detail/recent.png" />
@@ -33,8 +33,8 @@
         </view>
       </view>
       <view class="record-duration">
-        <view class="num">{{item.duration.before}}</view>
-        <view class="unit">{{item.duration.after}}</view>
+        <view class="num">{{item.duration.pref}}</view>
+        <view class="unit">{{item.duration.suff}}</view>
       </view>
     </view>
   </view>
@@ -48,4 +48,4 @@
     <view class="desc">开始记录</view>
   </view>
 </view>
-<m-modal title="目标名称修改为？" inputPlaceholder="{{goalTitle}}" wx:if="{{editingGoal}}" bind:confirm="onEditCompleted" bind:cancel="onEditCancel" />
+<m-modal title="目标名称修改为？" inputPlaceholder="{{goalTitle}}" wx:if="{{isEditingTitle}}" bind:confirm="onEditCompleted" bind:cancel="onEditCancel" />

@@ -8,11 +8,11 @@ Page({
     goalId: '',
     goalTitle: '',
     lastUpdate: '',
-    time: '',
-    longestTime: '',
+    duration: '',
+    longestDuration: '',
     goalRecords: null,
-    isEditingGoal: false,
-    uploadingGoalTitle: false
+    isEditingTitle: false,
+    isUploadingTitle: false
   },
 
   onLoad: function(options) {
@@ -40,7 +40,7 @@ Page({
 
   onEditGoalTitle() {
     this.setData({
-      isEditingGoal: true
+      isEditingTitle: true
     })
   },
 
@@ -50,30 +50,30 @@ Page({
       return
     }
 
-    if (this.data.uploadingGoalTitle) return
+    if (this.data.isUploadingTitle) return
 
-    this.data.uploadingGoalTitle = true
+    this.data.isUploadingTitle = true
 
     DetailModel.editGoalTitle(this.data.goalId, e.detail)
       .then(res => {
         this.setData({
-          isEditingGoal: false
+          isEditingTitle: false
         })
-        this.data.uploadingGoalTitle = false
+        this.data.isUploadingTitle = false
         showToast('修改成功', true)
       })
       .catch(err => {
         this.setData({
-          isEditingGoal: false
+          isEditingTitle: false
         })
-        this.data.uploadingGoalTitle = false
+        this.data.isUploadingTitle = false
         showToast('修改失败')
       })
   },
 
   onEditCancel() {
     this.setData({
-      isEditingGoal: false
+      isEditingTitle: false
     })
   },
 
@@ -92,15 +92,15 @@ Page({
     })
   },
 
-  getGoalData(id) {
-    DetailModel.getGoalData(id).then(
+  getGoalData(goalId) {
+    DetailModel.getGoalData(goalId).then(
       res => {
-        let data = DetailModel.formatGoalData(res.result)
+        const data = DetailModel.formatGoalData(res.result)
         this.setData({
           goalTitle: data.title,
           lastUpdate: data.lastUpdate,
-          time: data.time,
-          longestTime: data.longestTime,
+          duration: data.duration,
+          longestDuration: data.longestDuration,
           goalRecords: data.goalRecords
         })
       },

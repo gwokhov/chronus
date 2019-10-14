@@ -1,7 +1,4 @@
-import {
-  formatDurationToStr,
-  formatDateTime
-} from '../utils/dateTimeUtil'
+import { formatDurationToStr, formatDateTime } from '../utils/dateTimeUtil'
 const db = wx.cloud.database()
 
 export default class HomeModel {
@@ -65,17 +62,31 @@ export default class HomeModel {
       goal.lastUpdate = formatDateTime(goal.lastUpdate)
       wholeTime += goal.time
       goal.duration = formatDurationToStr(goal.time)
-      goal.time = (goal.time / (60 * 60)).toFixed(2)
+      goal.time = (goal.time / (60 * 60 * 1000)).toFixed(3) // 用于饼状图数据
     })
     return { list, wholeTime: formatDurationToStr(wholeTime) }
   }
 
   static serializeForChart(list) {
-    let chartData = []
-    list.forEach(goal => {
-      let data = { value: goal.time, name: goal.title }
+    const chartData = []
+    let min = 0
+    let max = 0
+    list.forEach((goal, index) => {
+      const { time, title } = goal
+      if (index === 0) {
+        min = time
+        max = time
+      } else {
+        min = min > time ? time : min
+        max = max < time ? time : max
+      }
+      const data = { value: time, name: title }
       chartData.push(data)
     })
-    return chartData
+    return {
+      min,
+      max,
+      list: chartData
+    }
   }
 }

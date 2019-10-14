@@ -21,36 +21,35 @@ export default class DetailModel {
   }
 
   static formatGoalData(data) {
-    let goalInfo = data.goalInfo.data
-    let goalRecords = data.goalRecords.data[0].records
+    const goalInfo = data.goalInfo.data
+    const goalRecords = data.goalRecords.data[0].records
 
     return {
       title: goalInfo.title,
-      time: formatDurationToStr(goalInfo.time),
+      duration: formatDurationToStr(goalInfo.time),
       lastUpdate: formatDate(goalInfo.lastUpdate),
       goalRecords: this.formatGoalRecords(goalRecords),
-      longestTime: this.getLongestTime(goalRecords)
+      longestDuration: this.pickLongestDuration(goalRecords)
     }
   }
 
   static formatGoalRecords(goalRecords) {
     if (!goalRecords) return []
-    goalRecords.forEach(record => {
-      ;(record.duration = formatDuration(record.time)),
-        (record.date =
-          formatDateTime(record.beginDate) +
-          ' ~ ' +
-          formatDateTime(record.endDate))
-    })
-    return goalRecords
+    return goalRecords.map(record => ({
+      duration: formatDuration(record.time),
+      date: `${formatDateTime(record.beginDate)} ~ ${formatDateTime(
+        record.endDate
+      )}`,
+      summary: record.summary
+    }))
   }
 
-  static getLongestTime(goalRecords) {
+  static pickLongestDuration(goalRecords) {
     if (!goalRecords) return formatDurationToStr(0)
     let max = 0
     goalRecords.forEach(record => {
-      let time = parseInt(record.time, 10)
-      max = (time > max) ? time : max
+      const duration = +record.time
+      max = duration > max ? duration : max
     })
     return formatDurationToStr(max)
   }

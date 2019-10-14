@@ -19,7 +19,6 @@ Page({
     isCreating: false,
     isUploading: false,
     timerGoalTitle: '',
-    timerGoalId: '',
     timer: '00:00:00',
     timerState: null
   },
@@ -250,8 +249,11 @@ Page({
 
   setChartOption(chart) {
     const data = HomeModel.serializeForChart(this.data.goalList)
+    const { min, max, list } = data
     const option = pieOptions
-    option.series[0].data = data
+    option.visualMap.min = min
+    option.visualMap.max = max
+    option.series[0].data = list
     chart.setOption(option)
   }
 })

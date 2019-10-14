@@ -2,7 +2,7 @@ export function formatDate(millisec) {
   if (!millisec) {
     return false
   }
-  const date = new Date()
+  const date = new Date(millisec)
   const month = date.getMonth() + 1
   const day = date.getDate()
   return `${month}月${day}日`
@@ -26,7 +26,7 @@ export function formatDateTime(millisec) {
 }
 
 export function formatDuration(millisec) {
-  const duration = millisec / 1000
+  const duration = +millisec / 1000
   let pref = ''
   let suff = ''
   if (duration <= 0) {
@@ -53,12 +53,12 @@ export function formatDuration(millisec) {
 }
 
 export function formatDurationToStr(millisec) {
-  const data = formatDuration(millisec)
+  const data = formatDuration(+millisec)
   return data.pref + data.suff
 }
 
 export function formatDurationToTimer(millisec) {
-  const duration = millisec / 1000
+  const duration = +millisec / 1000
   const second = padZero(Math.floor(duration % 60))
   const minute = padZero(Math.floor(duration / 60) % 60)
   const hour = padZero(Math.floor(duration / 60 / 60) % 60)

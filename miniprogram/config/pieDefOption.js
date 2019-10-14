@@ -2,14 +2,14 @@ export default {
   backgroundColor: 'transparent',
   tooltip: {
     trigger: 'item',
-    formatter: '{b}  {a}: {c} 小时 ({d}%)'
+    formatter: '{b}\n{a}: {c} 小时 ({d}%)'
   },
   visualMap: {
     show: false,
     min: 0,
-    max: 8,
+    max: 10,
     inRange: {
-      colorLightness: [0.8, 0.46]
+      colorLightness: [0.9, 0.42]
     }
   },
   series: [
