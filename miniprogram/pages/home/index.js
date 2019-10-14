@@ -116,7 +116,7 @@ Page({
 
   onJumpToTimerPage() {
     wx.navigateTo({
-      url: `/pages/timer/index?id=${this.data.timerGoalId}&title=${this.data.timerGoalTitle}`
+      url: '/pages/timer/index'
     })
   },
 

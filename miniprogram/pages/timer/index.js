@@ -15,9 +15,16 @@ Page({
   },
 
   onLoad(options) {
+    const timerInfo = globalEnv.getExistTimer()
     this.setData({
-      goalTitle: decodeURIComponent(options.title),
-      goalId: options.id
+      goalTitle:
+        timerInfo.timerState === TimerState.NONE
+          ? decodeURIComponent(options.goalTitle)
+          : timerInfo.goalTitle,
+      goalId:
+        timerInfo.timerState === TimerState.NONE
+          ? options.goalId
+          : timerInfo.goalId
     })
     this.initCounter()
   },
@@ -82,7 +89,9 @@ Page({
       isOngoing: true
     })
 
-    globalEnv.startTimer(this.data.goalId, this.data.goalTitle, duration => {
+    const { goalId, goalTitle } = this.data
+
+    globalEnv.startTimer(goalId, goalTitle, duration => {
       this.setData({
         timer: formatDurationToTimer(duration)
       })

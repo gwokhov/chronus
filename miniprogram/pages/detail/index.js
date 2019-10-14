@@ -32,9 +32,9 @@ Page({
     }
 
     wx.navigateTo({
-      url: `/pages/timer/index?id=${
+      url: `/pages/timer/index?goalId=${
         this.data.goalId
-      }&title=${encodeURIComponent(this.data.goalTitle)}`
+      }&goalTitle=${encodeURIComponent(this.data.goalTitle)}`
     })
   },
 
