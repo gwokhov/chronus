@@ -40,7 +40,7 @@
 └───miniprogram   //小程序存放目录
     ├───components   //组件存放目录
     │   ├───loading   //加载组件
-│   │   ├───modal   //输入框组件
+    │   ├───modal   //输入框组件
     │   ├───tag   //标签组件
     │   └───tips   //提示组件
     │       └───images

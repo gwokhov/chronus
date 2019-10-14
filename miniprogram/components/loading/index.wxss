@@ -9,7 +9,7 @@
   height: 24rpx;
   background-color: rgba(21, 101, 192, 0.6);
 
-  border-radius: 100%;
+  border-radius: 50%;
   display: inline-block;
   animation: sk-bouncedelay 1s infinite ease-in-out both;
 }

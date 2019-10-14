@@ -27,7 +27,7 @@ Page({
     this.data.goalId = goalId
     this.data.begin = +beginDate
     this.data.end = +endDate
-    this.data.duration = duration
+    this.data.duration = +duration
 
     this.setData({
       goalTitle: decodeURIComponent(goalTitle),
