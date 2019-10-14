@@ -1,24 +1,22 @@
-function showToast(title, isSuccess) {
-  isSuccess = isSuccess ? 'success' : 'none'
+export function showToast(title, isSuccess) {
+  const icon = isSuccess ? 'success' : 'none'
   wx.showToast({
     title,
-    icon: isSuccess,
+    icon,
     duration: 2000
   })
 }
 
-function showModal(title, content, onConfirm, onCancel) {
+export function showModal(title, content, onConfirm, onCancel) {
   wx.showModal({
-    title: title,
-    content: content,
+    title,
+    content,
     success(res) {
-      if (res.confirm) {
+      if (res.confirm && onConfirm) {
         onConfirm()
-      } else if (res.cancel) {
-        if(onCancel) onCancel()
+      } else if (res.cancel && onCancel) {
+        onCancel()
       }
     }
   })
 }
-
-export { showToast, showModal }

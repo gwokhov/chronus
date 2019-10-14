@@ -19,7 +19,7 @@
   </view>
 </view>
 <!-- 当前记录提示 -->
-<view class="timer-tips" wx:if="{{timerState}}" bind:tap="onCheckTimer">
+<view class="timer-tips" wx:if="{{timerState}}" bind:tap="onJumpToTimerPage">
   <view class="timer-detail">
     当前
     <view class="timer-goal-title">{{timerGoalTitle}}</view>

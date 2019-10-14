@@ -9,7 +9,7 @@
     <view class="date-desc">开始时间</view>
   </view>
   <view class="duration-container">
-    <view class="duration">{{durationText}}</view>
+    <view class="duration">{{durationStr}}</view>
     <view class="line"></view>
   </view>
   <view class="date-container end">

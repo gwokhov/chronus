@@ -1,31 +1,32 @@
-export function formatDate(dateStr) {
-  if (!dateStr) {
+export function formatDate(millisec) {
+  if (!millisec) {
     return false
   }
-  const date = new Date(dateStr)
+  const date = new Date()
   const month = date.getMonth() + 1
   const day = date.getDate()
   return `${month}月${day}日`
 }
 
-export function formatTime(dateStr) {
-  if (!dateStr) {
+export function formatTime(millisec) {
+  if (!millisec) {
     return false
   }
-  const date = new Date(dateStr)
+  const date = new Date(millisec)
   const hour = date.getHours()
   const minute = padZero(date.getMinutes())
   return `${hour}:${minute}`
 }
 
-export function formatDateTime(dateStr) {
-  if (!dateStr) {
+export function formatDateTime(millisec) {
+  if (!millisec) {
     return false
   }
-  return `${formatDate(dateStr)} ${formatTime(dateStr)}`
+  return `${formatDate(millisec)} ${formatTime(millisec)}`
 }
 
-export function formatDuration(duration) {
+export function formatDuration(millisec) {
+  const duration = millisec / 1000
   let pref = ''
   let suff = ''
   if (duration <= 0) {
@@ -51,13 +52,14 @@ export function formatDuration(duration) {
   }
 }
 
-export function formatDurationToStr(duration) {
-  const obj = formatDuration(duration)
-  return obj.pref + obj.suff
+export function formatDurationToStr(millisec) {
+  const data = formatDuration(millisec)
+  return data.pref + data.suff
 }
 
-export function formatDurationToTimer(duration) {
-  const second = padZero(duration % 60)
+export function formatDurationToTimer(millisec) {
+  const duration = millisec / 1000
+  const second = padZero(Math.floor(duration % 60))
   const minute = padZero(Math.floor(duration / 60) % 60)
   const hour = padZero(Math.floor(duration / 60 / 60) % 60)
   return `${hour}:${minute}:${second}`

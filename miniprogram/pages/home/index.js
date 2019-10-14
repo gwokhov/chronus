@@ -114,18 +114,14 @@ Page({
     })
   },
 
-  onCheckTimer() {
+  onJumpToTimerPage() {
     wx.navigateTo({
-      url:
-        '/pages/timer/index?id=' +
-        this.data.timerGoalId +
-        '&title=' +
-        this.data.timerGoalTitle
+      url: `/pages/timer/index?id=${this.data.timerGoalId}&title=${this.data.timerGoalTitle}`
     })
   },
 
   setTimerTips() {
-    let timerInfo = globalEnv.checkExistTimer()
+    let timerInfo = globalEnv.getExistTimer()
     let stateDesc = ''
 
     switch (timerInfo.timerState) {
@@ -256,9 +252,6 @@ Page({
     const data = HomeModel.serializeForChart(this.data.goalList)
     const option = pieOptions
     option.series[0].data = data
-    // option.visualMap.min = 0.19
-    // option.visualMap.max = 0.26
-    // option.visualMap.inRange.colorLightness = [0.8, 0.2]
     chart.setOption(option)
   }
 })

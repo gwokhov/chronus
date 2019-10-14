@@ -11,7 +11,7 @@ Page({
     isOngoing: true,
     pauseImg: '../../images/timer/pause.png',
     resumeImg: '../../images/timer/resume.png',
-    timer: '00:00:00',
+    timer: '00:00:00'
   },
 
   onLoad(options) {
@@ -30,24 +30,16 @@ Page({
   },
 
   onFinish() {
-    let timerInfo = globalEnv.checkExistTimer()
+    const timerInfo = globalEnv.getExistTimer()
 
-    let { beginDate, duration } = { ...timerInfo }
+    const { goalId, goalTitle, beginDate, duration } = timerInfo
 
     this.stopCounter()
 
     wx.redirectTo({
-      url:
-        '/pages/summary/index?id=' +
-        this.data.goalId +
-        '&title=' +
-        encodeURIComponent(this.data.goalTitle) +
-        '&begin=' +
-        beginDate +
-        '&end=' +
-        new Date() +
-        '&duration=' +
-        duration
+      url: `/pages/summary/index?goalId=${goalId}&goalTitle=${encodeURIComponent(
+        goalTitle
+      )}&beginDate=${beginDate}&endDate=${Date.now()}&duration=${duration}`
     })
   },
 
@@ -66,7 +58,7 @@ Page({
   },
 
   initCounter() {
-    let timerInfo = globalEnv.checkExistTimer()
+    let timerInfo = globalEnv.getExistTimer()
 
     switch (timerInfo.timerState) {
       case TimerState.ONGOING:

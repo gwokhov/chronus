@@ -24,7 +24,7 @@ Page({
   },
 
   onStartRecord() {
-    let timerInfo = globalEnv.checkExistTimer()
+    let timerInfo = globalEnv.getExistTimer()
 
     if (timerInfo.goalId !== '' && timerInfo.goalId !== this.data.goalId) {
       showToast('你目前已经有目标在进行中')

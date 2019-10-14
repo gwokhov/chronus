@@ -10,31 +10,32 @@ Page({
   data: {
     goalId: '',
     goalTitle: '',
-    begin: '',
+    begin: 0,
     beginTime: '',
     beginDate: '',
-    end: '',
+    end: 0,
     endTime: '',
     endDate: '',
     duration: 0,
-    durationText: '',
+    durationStr: '',
     summary: '',
-    uploadingSummary: false
+    isUploading: false
   },
 
   onLoad(options) {
-    this.data.goalId = options.id
-    this.data.begin = options.begin
-    this.data.end = options.end
-    this.data.duration = options.duration
+    const { goalId, goalTitle, beginDate, endDate, duration } = options
+    this.data.goalId = goalId
+    this.data.begin = +beginDate
+    this.data.end = +endDate
+    this.data.duration = duration
 
     this.setData({
-      goalTitle: decodeURIComponent(options.title),
-      beginTime: formatTime(options.begin),
-      beginDate: formatDate(options.begin),
-      endTime: formatTime(options.end),
-      endDate: formatDate(options.end),
-      durationText: formatDurationToStr(options.duration)
+      goalTitle: decodeURIComponent(goalTitle),
+      beginTime: formatTime(+beginDate),
+      beginDate: formatDate(+beginDate),
+      endTime: formatTime(+endDate),
+      endDate: formatDate(+endDate),
+      durationStr: formatDurationToStr(duration)
     })
   },
 
@@ -45,24 +46,24 @@ Page({
   },
 
   onSubmit() {
-    if (this.data.uploadingSummary) return
+    if (this.data.isUploading) return
 
-    this.data.uploadingSummary = true
+    this.data.isUploading = true
+    const { goalId, begin, end, duration, summary } = this.data
     SummaryModel.addGoalRecord(
-      this.data.goalId,
-      this.data.begin,
-      this.data.end,
-      this.data.duration,
-      this.data.summary ? this.data.summary : '无标题'
+      goalId,
+      begin,
+      end,
+      duration,
+      summary ? summary : '无标题'
     ).then(
       res => {
-        showToast('提交成功', true)
         wx.navigateBack({
           delta: 1
         })
       },
       err => {
-        this.data.uploadingSummary = false
+        this.data.isUploading = false
         showToast('提交失败')
       }
     )
