@@ -5,17 +5,19 @@ const db = cloud.database()
 const _ = db.command
 
 exports.main = async (event, context) => {
-  let goalId = event.goalId
+  const { goalId } = event
 
-  if(!goalId) return
+  if (!goalId) {
+    return
+  }
 
   try {
-    let goalInfo = await db
+    const goalInfo = await db
       .collection('goals')
       .doc(goalId)
       .get()
 
-    let goalRecords = await db
+    const goalRecords = await db
       .collection('goal-records')
       .where({
         goalId

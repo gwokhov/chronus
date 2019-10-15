@@ -46,12 +46,12 @@ export default class HomeModel {
     })
   }
 
-  static addGoal(userId, title) {
+  static addGoal(userId, goalTitle) {
     return wx.cloud.callFunction({
       name: 'createGoal',
       data: {
         userId,
-        title
+        goalTitle
       }
     })
   }

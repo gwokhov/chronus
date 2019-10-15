@@ -5,9 +5,11 @@ const db = cloud.database()
 const _ = db.command
 
 exports.main = async (event, context) => {
-  let userId = event.userId
+  const { userId } = event
 
-  if(!userId) return
+  if (!userId) {
+    return
+  }
 
   try {
     return await db

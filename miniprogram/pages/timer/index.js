@@ -65,7 +65,7 @@ Page({
   },
 
   initCounter() {
-    let timerInfo = globalEnv.getExistTimer()
+    const timerInfo = globalEnv.getExistTimer()
 
     switch (timerInfo.timerState) {
       case TimerState.ONGOING:

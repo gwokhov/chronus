@@ -5,9 +5,11 @@ const db = cloud.database()
 const _ = db.command
 
 exports.main = async (event, context) => {
-  let goalId = event.goalId
+  const { goalId } = event
 
-  if(!goalId) return
+  if (!goalId) {
+    return
+  }
 
   try {
     await db
@@ -21,7 +23,6 @@ exports.main = async (event, context) => {
       .collection('goals')
       .doc(goalId)
       .remove()
-
   } catch (e) {
     console.log(e)
   }

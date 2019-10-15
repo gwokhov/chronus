@@ -54,7 +54,7 @@ Page({
     }
   },
 
-  onReady(e) {
+  onReady() {
     const $chart = this.selectComponent('#chart')
     $chart.init((canvas, width, height) => {
       const chart = echarts.init(canvas, null, {
@@ -88,8 +88,8 @@ Page({
   },
 
   onAddGoal(e) {
-    const title = e.detail
-    if (!title.length) {
+    const goalTitle = e.detail
+    if (!goalTitle.length) {
       showToast('标题不能为空')
       return
     }
@@ -99,7 +99,7 @@ Page({
     }
 
     this.data.isUploading = true
-    HomeModel.addGoal(globalEnv.data.userId, title).then(
+    HomeModel.addGoal(globalEnv.data.userId, goalTitle).then(
       res => {
         this.setData({
           isCreating: false
@@ -133,7 +133,7 @@ Page({
   },
 
   setTimerTips() {
-    let timerInfo = globalEnv.getExistTimer()
+    const timerInfo = globalEnv.getExistTimer()
     let stateDesc = ''
 
     switch (timerInfo.timerState) {
@@ -228,12 +228,12 @@ Page({
           })
           return
         }
-        let formattedData = HomeModel.formatGoalList(res.result.data)
+        const formattedData = HomeModel.formatGoalList(res.result.data)
         this.setData({
           goalList: formattedData.list,
           wholeTime: formattedData.wholeTime
         })
-        
+
         this.data.isDataLoaded = true
         if (this.data.isPieInited) {
           this.updatePieOption()

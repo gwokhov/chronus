@@ -5,15 +5,14 @@ const db = cloud.database()
 const _ = db.command
 
 exports.main = async (event, context) => {
-  let goalTitle = event.title
-  let userId = event.userId
+  const { goalTitle, userId } = event
 
   if (!goalTitle || !userId) return
 
   try {
-    let goal = await db.collection('goals').add({
+    const goal = await db.collection('goals').add({
       data: {
-        userId: userId,
+        userId,
         title: goalTitle,
         createDate: new Date(),
         lastUpdate: null,

@@ -5,13 +5,11 @@ const db = cloud.database()
 const _ = db.command
 
 exports.main = async (event, context) => {
-  let goalId = event.goalId
-  let beginDate = event.beginDate
-  let endDate = event.endDate
-  let summary = event.summary
-  let time = event.time
+  const { goalId, beginDate, endDate, summary, time } = event
 
-  if(!goalId) return
+  if (!goalId) {
+    return
+  }
 
   try {
     await db
