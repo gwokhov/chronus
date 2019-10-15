@@ -15,7 +15,7 @@
 <view class="pie-container">
   <image class="empty-img" wx:if="{{goalList.length === 0 || !goalList}}" mode="aspectFit" src="../../images/home/empty.png" bind:tap="onCreateGoal" />
   <view class="pie" hidden="{{isCreating}}">
-    <ec-canvas ec="{{ pieOpt }}" bind:init="onPieInit"></ec-canvas>
+    <ec-canvas ec="{{ pieOpt }}" id="chart"></ec-canvas>
   </view>
 </view>
 <!-- 当前记录提示 -->

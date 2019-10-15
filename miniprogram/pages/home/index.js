@@ -54,18 +54,21 @@ Page({
     }
   },
 
-  onPieInit(e) {
-    const { canvas, width, height } = e.detail
-    const chart = echarts.init(canvas, null, {
-      width,
-      height
+  onReady(e) {
+    const $chart = this.selectComponent('#chart')
+    $chart.init((canvas, width, height) => {
+      const chart = echarts.init(canvas, null, {
+        width,
+        height
+      })
+      canvas.setChart(chart)
+      this.pie = chart
+      this.data.isPieInited = true
+      if (this.data.isDataLoaded) {
+        this.updatePieOption()
+      }
+      return chart
     })
-    canvas.setChart(chart)
-    this.pie = chart
-    this.data.isPieInited = true
-    if (this.data.isDataLoaded) {
-      this.updatePieOption()
-    }
   },
 
   onCreateGoal() {
@@ -233,7 +236,7 @@ Page({
         
         this.data.isDataLoaded = true
         if (this.data.isPieInited) {
-          this.updatePieOption(this.pie)
+          this.updatePieOption()
         }
       },
       err => {
