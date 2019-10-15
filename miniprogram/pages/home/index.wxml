@@ -1,4 +1,4 @@
-<view class="{{creatingGoal ? 'blur-bg' : ''}}">
+<view class="{{isCreating ? 'blur-bg' : ''}}">
 
 <!-- 用户信息 -->
 <view class='user-info-container'>
@@ -14,8 +14,8 @@
 <!-- 饼状图 -->
 <view class="pie-container">
   <image class="empty-img" wx:if="{{goalList.length === 0 || !goalList}}" mode="aspectFit" src="../../images/home/empty.png" bind:tap="onCreateGoal" />
-  <view class="pie" hidden="{{creatingGoal}}">
-    <ec-canvas id="chart" ec="{{ chart }}"></ec-canvas>
+  <view class="pie" hidden="{{isCreating}}">
+    <ec-canvas ec="{{ pieOpt }}" bind:init="onPieInit"></ec-canvas>
   </view>
 </view>
 <!-- 当前记录提示 -->
@@ -54,4 +54,4 @@
 
 </view>
 
-<m-modal title="新目标的名称是？" wx:if="{{isCreating}}" inputPlaceholder="例如：阅读《瓦尔登湖》" bind:cancel="onCancelCreate"/>
+<m-modal title="新目标的名称是？" wx:if="{{isCreating}}" inputPlaceholder="例如：阅读《瓦尔登湖》" bind:cancel="onCancelCreate" bind:confirm="onAddGoal"/>

@@ -6,16 +6,16 @@ import TimerState from '../../config/timerState'
 import { formatDurationToTimer } from '../../utils/dateTimeUtil'
 
 const globalEnv = getApp()
+let pie = null
 
 Page({
   data: {
-    chart: {
-      lazyLoad: true
-    },
+    pieOpt: {},
     userInfo: null,
     goalList: null,
     wholeTime: '',
-    hasInitChart: false,
+    isDataLoaded: false,
+    isPieInited: false,
     isCreating: false,
     isUploading: false,
     timerGoalTitle: '',
@@ -43,10 +43,6 @@ Page({
     this.setTimerTips()
   },
 
-  onReady() {
-    this.chartComponent = this.selectComponent('#chart')
-  },
-
   /**
    * 点击授权按钮获取信息
    */
@@ -55,6 +51,20 @@ Page({
       this.setData({
         userInfo: e.detail.userInfo
       })
+    }
+  },
+
+  onPieInit(e) {
+    const { canvas, width, height } = e.detail
+    const chart = echarts.init(canvas, null, {
+      width,
+      height
+    })
+    canvas.setChart(chart)
+    this.pie = chart
+    this.data.isPieInited = true
+    if (this.data.isDataLoaded) {
+      this.updatePieOption()
     }
   },
 
@@ -220,10 +230,10 @@ Page({
           goalList: formattedData.list,
           wholeTime: formattedData.wholeTime
         })
-        if (this.data.hasInitChart) {
-          this.setChartOption(this.chart)
-        } else {
-          this.initChart()
+        
+        this.data.isDataLoaded = true
+        if (this.data.isPieInited) {
+          this.updatePieOption(this.pie)
         }
       },
       err => {
@@ -232,28 +242,13 @@ Page({
     )
   },
 
-  initChart() {
-    this.chartComponent.init((canvas, width, height) => {
-      const chart = echarts.init(canvas, null, {
-        width: width,
-        height: height
-      })
-      this.setChartOption(chart)
-      this.chart = chart
-      this.setData({
-        hasInitChart: true
-      })
-      return chart
-    })
-  },
-
-  setChartOption(chart) {
+  updatePieOption() {
     const data = HomeModel.serializeForChart(this.data.goalList)
     const { min, max, list } = data
     const option = pieOptions
     option.visualMap.min = min
     option.visualMap.max = max
     option.series[0].data = list
-    chart.setOption(option)
+    this.pie.setOption(option)
   }
 })
