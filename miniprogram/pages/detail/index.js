@@ -57,7 +57,8 @@ Page({
     DetailModel.editGoalTitle(this.data.goalId, e.detail)
       .then(res => {
         this.setData({
-          isEditingTitle: false
+          isEditingTitle: false,
+          goalTitle: res.result.data.goalTitle
         })
         this.data.isUploadingTitle = false
         showToast('修改成功', true)

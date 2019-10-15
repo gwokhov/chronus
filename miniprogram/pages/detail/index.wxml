@@ -1,4 +1,4 @@
-<view class="{{editingGoal ? 'blur-bg': ''}}">
+<view class="{{isEditingTitle ? 'blur-bg': ''}}">
   <view class="header">
     <view class="goal-title">{{goalTitle}}</view>
     <image mode="aspectFit" bind:tap="onEditGoalTitle" class="edit-goal-title" src="../../images/detail/edit.png"></image>

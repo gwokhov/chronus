@@ -9,7 +9,7 @@ exports.main = async (event, context) => {
   if (!goalId || !goalTitle) return
 
   try {
-    return await db
+    const result = await db
       .collection('goals')
       .doc(goalId)
       .update({
@@ -17,6 +17,10 @@ exports.main = async (event, context) => {
           title: goalTitle
         }
       })
+    result.data = {
+      goalTitle
+    }
+    return result
   } catch (e) {
     console.log(e)
   }
