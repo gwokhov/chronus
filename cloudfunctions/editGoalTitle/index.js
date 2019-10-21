@@ -18,10 +18,12 @@ exports.main = async (event, context) => {
         }
       })
     result.data = {
+      goalId,
       goalTitle
     }
     return result
   } catch (e) {
     console.log(e)
+    return e
   }
 }

@@ -24,7 +24,7 @@ Page({
   },
 
   onStartRecord() {
-    const timerInfo = globalEnv.getExistTimer()
+    const timerInfo = globalEnv.data
 
     if (timerInfo.goalId !== '' && timerInfo.goalId !== this.data.goalId) {
       showToast('你目前已经有目标在进行中')
@@ -56,10 +56,17 @@ Page({
 
     DetailModel.editGoalTitle(this.data.goalId, e.detail)
       .then(res => {
+        const { goalId, goalTitle } = res.result.data
+        const timerInfo = globalEnv.data
+
         this.setData({
           isEditingTitle: false,
-          goalTitle: res.result.data.goalTitle
+          goalTitle
         })
+
+        if (timerInfo.goalId && timerInfo.goalId === goalId) {
+          timerInfo.goalTitle = goalTitle
+        }
         this.data.isUploadingTitle = false
         showToast('修改成功', true)
       })

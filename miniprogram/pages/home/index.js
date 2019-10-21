@@ -133,7 +133,7 @@ Page({
   },
 
   setTimerTips() {
-    const timerInfo = globalEnv.getExistTimer()
+    const timerInfo = globalEnv.data
     let stateDesc = ''
 
     switch (timerInfo.timerState) {

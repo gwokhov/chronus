@@ -69,9 +69,5 @@ App({
     this.data.pauseDuration = 0
     this.data.beginDate = 0
     this.data.pauseDate = 0
-  },
-
-  getExistTimer() {
-    return this.data
   }
 })

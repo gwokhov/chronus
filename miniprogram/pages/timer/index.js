@@ -15,7 +15,7 @@ Page({
   },
 
   onLoad(options) {
-    const timerInfo = globalEnv.getExistTimer()
+    const timerInfo = globalEnv.data
     this.setData({
       goalTitle:
         timerInfo.timerState === TimerState.NONE
@@ -37,7 +37,7 @@ Page({
   },
 
   onFinish() {
-    const timerInfo = globalEnv.getExistTimer()
+    const timerInfo = globalEnv.data
 
     const { goalId, goalTitle, beginDate, duration } = timerInfo
 
@@ -65,7 +65,7 @@ Page({
   },
 
   initCounter() {
-    const timerInfo = globalEnv.getExistTimer()
+    const timerInfo = globalEnv.data
 
     switch (timerInfo.timerState) {
       case TimerState.ONGOING:
