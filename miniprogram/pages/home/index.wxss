@@ -1,6 +1,7 @@
 .blur-bg {
   filter: blur(10rpx);
   overflow: hidden;
+  animation: ani-blur 1000ms;
 }
 
 /* 用户信息显示 */
@@ -171,6 +172,16 @@
     background-color: #fdd835;
   }
 }
+
+@keyframes ani-blur {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 
 /* 创建按钮 */
 .create {

@@ -5,6 +5,7 @@
   bottom: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.4);
+  animation: ani-show-mask 200ms ease-out;
 }
 
 /* 创建目标对话框 */
@@ -19,16 +20,25 @@
   background-color: #fff;
   transform: translateY(-60%) translateX(-50%);
   box-shadow: 0 8rpx 80rpx rgba(0, 0, 0, 0.3);
-  animation: show-modal 150ms ease-out;
+  animation: ani-show-modal 200ms ease-out;
 }
 
-@keyframes show-modal {
+@keyframes ani-show-modal {
   from {
     transform: translateY(200%) translateX(-50%);
     opacity: 0;
   }
   to {
     transform: translateY(-60%) translateX(-50%);
+    opacity: 1;
+  }
+}
+
+@keyframes ani-show-mask {
+  from {
+    opacity: 0;
+  }
+  to {
     opacity: 1;
   }
 }

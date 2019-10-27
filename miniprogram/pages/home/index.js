@@ -71,6 +71,12 @@ Page({
     })
   },
 
+  onShareAppMessage() {
+    return {
+      title: '我在用 Chronus 来记录目标进度'
+    }
+  },
+
   onCreateGoal() {
     if (!this.data.userInfo) {
       showToast('请先授权登录')
