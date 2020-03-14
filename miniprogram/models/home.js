@@ -1,5 +1,4 @@
 import { formatDurationToStr, formatDateTime } from '../utils/dateTimeUtil'
-const db = wx.cloud.database()
 
 export default class HomeModel {
   static getUserInfo() {
@@ -32,8 +31,9 @@ export default class HomeModel {
   }
 
   static addUserId() {
-    return db.collection('users').add({
-      data: {}
+    return wx.cloud.callFunction({
+      name: 'addUser',
+      data: null
     })
   }
 

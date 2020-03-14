@@ -23,14 +23,16 @@
 1. 在微信开发工具中导入该项目文件夹。
 2. **确保你开通了云开发功能**。
 3. 在微信开发工具中将全部云函数上传并部署。
-4. 在云开发数据库中创建`users`、`goals`、`goal-records`三个集合。
-5. 在`goal-records`中添加`goalId`为唯一索引，在`users`中添加`_openid`为唯一索引。
+4. **在 `/miniprogram/config.js` 中输入你的云开发环境id。**
+5. 在云开发数据库中创建 `users`、`goals`、`goal-records`  三个集合。
+6. 在 `goal-records` 中添加 `goalId` 为唯一索引，在 `users `中添加 `_openid` 为唯一索引。
 
 ## 项目结构说明
 
 ```
 ├───cloudfunctions   //云函数存放目录
 │   ├───addGoalRecord   //添加目标记录
+│   ├───addUser   //创建用户
 │   ├───createGoal   //创建目标
 │   ├───editGoalTitle   //修改目标标题
 │   ├───getGoalData   //获取单个目标信息

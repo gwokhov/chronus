@@ -4,22 +4,17 @@ cloud.init({
   env: cloud.DYNAMIC_CURRENT_ENV
 })
 const db = cloud.database()
-const _ = db.command
 
 exports.main = async (event, context) => {
-  const { userId } = event
-
-  if (!userId) {
-    return
-  }
+  
+  const wxContext = cloud.getWXContext()
 
   try {
-    return await db
-      .collection('goals')
-      .where({
-        userId
-      })
-      .get()
+    return await db.collection('users').add({
+      data: {
+        _openid: wxContext.OPENID
+      }
+    })
   } catch (e) {
     console.log(e)
   }
